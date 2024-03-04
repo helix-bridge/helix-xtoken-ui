@@ -22,7 +22,7 @@ jobs:
           vercel_group: itering
           preview_output: true
           alias_domain: "helix-xtoken-stg"
-          project_name: "helix-apps"
+          project_name: "helix-xtoken-ui"
           script_run: false
           dist_path: .
           enable_notify_slack: true
@@ -36,7 +36,7 @@ jobs:
           vercel_group: itering
           preview_output: true
           alias_domain: "helix-xtoken-stg-test"
-          project_name: "helix-apps-test"
+          project_name: "helix-xtoken-ui-test"
           script_run: false
           dist_path: .
           enable_notify_slack: true

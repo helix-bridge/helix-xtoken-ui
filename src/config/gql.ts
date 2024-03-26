@@ -78,6 +78,7 @@ export const GQL_HISTORY_RECORD_BY_ID = gql`
       recvToken
       sendTokenAddress
       recvTokenAddress
+      extData
     }
   }
 `;

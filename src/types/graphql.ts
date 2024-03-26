@@ -46,6 +46,7 @@ export interface HistoryRecord {
   relayer: Address | null;
   endTxHash: Hex | null;
   confirmedBlocks: string | null;
+  extData: Hex;
 }
 
 export interface LnBridgeRelayInfo {

@@ -25,7 +25,7 @@ export default function ChainSelect({
 }: Props) {
   return (
     <Select
-      labelClassName={`gap-small rounded-middle flex items-center justify-between transition active:translate-y-1 ${className}`}
+      labelClassName={`gap-small rounded-xl flex items-center justify-between transition active:translate-y-1 ${className}`}
       childClassName={`bg-inner flex flex-col rounded-middle max-h-60 overflow-y-auto border border-component ${
         compact ? "py-small" : "p-middle"
       }`}

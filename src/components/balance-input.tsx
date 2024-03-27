@@ -146,7 +146,7 @@ export function BalanceInput({
 
   return (
     <div
-      className={`normal-input-wrap relative flex flex-col rounded-middle bg-inner px-small py-small lg:px-middle ${
+      className={`normal-input-wrap relative flex flex-col rounded-xl bg-inner px-small py-small lg:px-middle ${
         compact ? "lg:py-middle" : ""
       } ${value.valid ? "valid-input-wrap border-transparent" : "invalid-input-wrap"}`}
     >

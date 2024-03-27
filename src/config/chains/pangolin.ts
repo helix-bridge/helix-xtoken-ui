@@ -56,4 +56,5 @@ export const pangolinChain: ChainConfig = {
   messager: {
     msgline: "0xf7F461728DC89de5EF6615715678b5f5b12bb98A",
   },
+  convertor: "0x3ACEb55AAD4CDFE1531A9C6F6416753e6a7BDD49",
 };

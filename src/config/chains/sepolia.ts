@@ -40,9 +40,9 @@ export const sepoliaChain: ChainConfig = {
       symbol: "xPRING",
       name: "xPRING",
       type: "erc20",
-      address: "0xBD50868F36Eb46355eC5a153AbD3a7eA094A5c37",
-      outer: "0xBD50868F36Eb46355eC5a153AbD3a7eA094A5c37",
-      inner: "0xF874fad204757588e67EE55cE93D654b6f5C39C6",
+      address: "0xdE64c6d8b24eeB16D864841d2873aB7a379c45b6",
+      outer: "0xdE64c6d8b24eeB16D864841d2873aB7a379c45b6",
+      inner: "0x3beb2cf5c2c050bc575350671aa5f06e589386e8",
       logo: "ring.png",
       cross: [
         {

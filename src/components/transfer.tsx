@@ -71,7 +71,7 @@ export default function Transfer() {
       (sourceChain?.network === "ethereum" && targetChain?.network === "darwinia-dvm")
     ) {
       return (
-        <div className="flex flex-wrap items-center justify-center rounded-xl bg-inner p-middle text-center text-sm font-medium text-app-orange">
+        <div className="flex flex-wrap items-center justify-center rounded-xl bg-inner px-3 py-middle text-center text-sm font-medium text-app-orange">
           <span>
             {`Due to the Ethereum upgrade, the Darwinia<>Ethereum bridge is temporarily unavailable. Please use the official`}
             &nbsp;

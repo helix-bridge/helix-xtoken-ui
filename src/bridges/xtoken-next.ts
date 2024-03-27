@@ -21,8 +21,8 @@ export class XTokenNextBridge extends BaseBridge {
       (this.sourceChain?.network === "pangolin-dvm" && this.targetChain?.network === "sepolia") ||
       (this.sourceChain?.network === "sepolia" && this.targetChain?.network === "pangolin-dvm")
     ) {
-      backing = "0x7E3105E3A13D55d824b6322cbD2049f098a097F6";
-      issuing = "0x3B36c2Db4CC5E92Af015Eb572A1C95C95599a8bF";
+      backing = "0x24f8a04F0cA0730F4b8eC3241F15aCc6b3f8Da0a";
+      issuing = "0x1aeC008Af5c604be3525d0bB70fFcc4D7281f30C";
     }
     this.initContractByBackingIssuing(backing, issuing);
   }

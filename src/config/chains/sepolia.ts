@@ -30,8 +30,8 @@ export const sepoliaChain: ChainConfig = {
       name: "ETH",
       type: "native",
       address: "0x0000000000000000000000000000000000000000",
-      inner: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
+      inner: "0x0000000000000000000000000000000000000000",
       logo: "eth.svg",
       cross: [],
     },
@@ -40,9 +40,9 @@ export const sepoliaChain: ChainConfig = {
       symbol: "xPRING",
       name: "xPRING",
       type: "erc20",
-      address: "0xBC43cb6175FcC8E577a0846256eA699b87eFcEE5",
-      inner: "0xBC43cb6175FcC8E577a0846256eA699b87eFcEE5",
-      outer: "0xBC43cb6175FcC8E577a0846256eA699b87eFcEE5",
+      address: "0xBD50868F36Eb46355eC5a153AbD3a7eA094A5c37",
+      outer: "0xBD50868F36Eb46355eC5a153AbD3a7eA094A5c37",
+      inner: "0xF874fad204757588e67EE55cE93D654b6f5C39C6",
       logo: "ring.svg",
       cross: [
         {

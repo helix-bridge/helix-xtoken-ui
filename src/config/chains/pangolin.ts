@@ -41,8 +41,8 @@ export const pangolinChain: ChainConfig = {
       name: "PRING",
       type: "native",
       address: "0x0000000000000000000000000000000000000000",
-      inner: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
+      inner: "0x617E55f692FA2feFfdD5D9C513782A479cC1FF57",
       logo: "ring.svg",
       cross: [
         {

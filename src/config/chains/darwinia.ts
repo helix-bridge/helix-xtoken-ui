@@ -47,8 +47,8 @@ export const darwiniaChain: ChainConfig = {
       name: "RING",
       type: "native",
       address: "0x0000000000000000000000000000000000000000",
-      inner: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
+      inner: "0x0000000000000000000000000000000000000000",
       logo: "ring.svg",
       cross: [
         {
@@ -79,8 +79,8 @@ export const darwiniaChain: ChainConfig = {
       name: "KTON",
       type: "erc20",
       address: "0x0000000000000000000000000000000000000402",
-      inner: "0x0000000000000000000000000000000000000402",
       outer: "0x0000000000000000000000000000000000000402",
+      inner: "0x0000000000000000000000000000000000000402",
       logo: "kton.svg",
       cross: [
         {
@@ -96,8 +96,8 @@ export const darwiniaChain: ChainConfig = {
       name: "xWCRAB",
       type: "erc20",
       address: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
-      inner: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
       outer: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
+      inner: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
       logo: "crab.svg",
       cross: [
         {

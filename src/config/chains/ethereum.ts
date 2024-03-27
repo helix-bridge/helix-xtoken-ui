@@ -32,8 +32,8 @@ export const ethereumChain: ChainConfig = {
       name: "RING",
       type: "erc20",
       address: "0x9469d013805bffb7d3debe5e7839237e535ec483",
-      inner: "0x9469d013805bffb7d3debe5e7839237e535ec483",
       outer: "0x9469d013805bffb7d3debe5e7839237e535ec483",
+      inner: "0x9469d013805bffb7d3debe5e7839237e535ec483",
       logo: "ring.svg",
       cross: [
         {
@@ -57,8 +57,8 @@ export const ethereumChain: ChainConfig = {
       name: "KTON",
       type: "erc20",
       address: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
-      inner: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
       outer: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
+      inner: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
       logo: "kton.svg",
       cross: [
         {

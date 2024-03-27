@@ -259,7 +259,7 @@ export default function Transfer() {
       <div className="mx-auto flex w-full flex-col gap-large rounded-large bg-component p-middle lg:mt-20 lg:w-[30rem] lg:gap-5 lg:p-5">
         {/* From-To */}
         <div className="mt-8 flex items-center justify-between gap-small lg:gap-large">
-          <Label text="From" className="w-[45%] lg:w-full" textClassName="font-medium" needAbsolute>
+          <Label text="From" className="w-[45%] lg:w-full" textClassName="font-medium text-sm" needAbsolute>
             <ChainSelect
               className="w-full bg-inner p-middle"
               placement="bottom-start"
@@ -312,7 +312,7 @@ export default function Transfer() {
               });
             }}
           />
-          <Label text="To" className="w-[45%] lg:w-full" textClassName="font-medium" needAbsolute>
+          <Label text="To" className="w-[45%] lg:w-full" textClassName="font-medium text-sm" needAbsolute>
             <ChainSelect
               className="w-full bg-inner p-middle"
               placement="bottom-end"
@@ -336,7 +336,7 @@ export default function Transfer() {
         </div>
 
         {/* Amount */}
-        <Label text="Amount" textClassName="font-medium" extra={isProduction() ? null : <Faucet />}>
+        <Label text="Amount" textClassName="font-medium text-sm" extra={isProduction() ? null : <Faucet />}>
           <BalanceInput
             autoFocus
             placeholder="0"
@@ -362,7 +362,11 @@ export default function Transfer() {
         </Label>
 
         {/* Bridge */}
-        <Label text="Bridge" className={`${bridgeOptions.length > 1 ? "" : "hidden"}`} textClassName="font-medium">
+        <Label
+          text="Bridge"
+          className={`${bridgeOptions.length > 1 ? "" : "hidden"}`}
+          textClassName="font-medium text-sm"
+        >
           <BridgeSelect
             options={bridgeOptions}
             value={bridgeCategory}
@@ -374,7 +378,7 @@ export default function Transfer() {
         </Label>
 
         {/* Information */}
-        <Label text="Information" textClassName="font-medium">
+        <Label text="Information" textClassName="font-medium text-sm">
           {alert ?? (
             <TransferInfo
               fee={bridgeFee ? { ...bridgeFee, loading: isLoadingFee || isLoadingRelayers } : undefined}

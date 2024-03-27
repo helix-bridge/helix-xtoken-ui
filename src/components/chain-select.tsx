@@ -26,7 +26,7 @@ export default function ChainSelect({
   return (
     <Select
       labelClassName={`gap-small rounded-xl flex items-center justify-between transition active:translate-y-1 ${className}`}
-      childClassName={`bg-inner flex flex-col rounded-middle max-h-60 overflow-y-auto border border-component ${
+      childClassName={`bg-inner flex flex-col rounded-xl max-h-60 overflow-y-auto border border-component ${
         compact ? "py-small" : "p-middle"
       }`}
       label={
@@ -77,7 +77,7 @@ export default function ChainSelect({
             {options.map((option) => (
               <button
                 key={option.id}
-                className="flex w-36 shrink-0 items-center gap-small truncate rounded-middle bg-component px-2 py-1 transition-colors hover:bg-white/20"
+                className="flex w-36 shrink-0 items-center gap-small truncate rounded-middle bg-component px-2 py-2 transition-colors hover:bg-white/20"
                 onClick={() => onChange(option)}
               >
                 <Image

@@ -125,7 +125,7 @@ export default function Faucet() {
       </button>
 
       <Modal
-        className="w-full lg:w-[30rem]"
+        className="w-full lg:w-[24rem]"
         title="Faucet"
         okText={chain?.id === sourceChain?.id ? "Claim" : "Switch Network"}
         isOpen={isOpen}
@@ -136,10 +136,10 @@ export default function Faucet() {
         onCancel={setIsOpenFalse}
         onOk={handleClaim}
       >
-        <Label text="Max" tips="The maximum you can claim">
+        <Label text="Max" tips="The maximum you can claim" textClassName="text-sm font-medium">
           <Item value={max} token={sourceToken} />
         </Label>
-        <Label text="Allow" tips="Currently available for claiming">
+        <Label text="Allow" tips="Currently available for claiming" textClassName="text-sm font-medium">
           <Item value={allow} token={sourceToken} />
         </Label>
       </Modal>
@@ -149,9 +149,9 @@ export default function Faucet() {
 
 function Item({ value, token }: { value: bigint; token?: Token }) {
   return (
-    <div className="flex items-center justify-between rounded-middle bg-inner px-middle py-middle">
-      <span className="text-sm font-medium">{token && formatBalance(value, token.decimals)}</span>
-      <span className="text-sm font-medium">{token?.symbol}</span>
+    <div className="flex items-center justify-between rounded-xl bg-inner px-middle py-middle">
+      <span className="text-sm font-semibold">{token && formatBalance(value, token.decimals)}</span>
+      <span className="text-sm font-semibold">{token?.symbol}</span>
     </div>
   );
 }

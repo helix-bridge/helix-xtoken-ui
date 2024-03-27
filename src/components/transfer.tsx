@@ -71,7 +71,7 @@ export default function Transfer() {
       (sourceChain?.network === "ethereum" && targetChain?.network === "darwinia-dvm")
     ) {
       return (
-        <div className="flex flex-wrap items-center justify-center rounded-xl bg-inner px-3 py-middle text-center text-sm font-medium text-app-orange">
+        <div className="flex flex-wrap items-center justify-center rounded-2xl bg-inner px-3 py-middle text-center text-sm font-medium text-app-orange">
           <span>
             {`Due to the Ethereum upgrade, the Darwinia<>Ethereum bridge is temporarily unavailable. Please use the official`}
             &nbsp;
@@ -256,7 +256,7 @@ export default function Transfer() {
 
   return (
     <>
-      <div className="mx-auto flex w-full flex-col gap-large rounded-large bg-component p-middle lg:mt-20 lg:w-[30rem] lg:gap-5 lg:p-5">
+      <div className="mx-auto flex w-full flex-col gap-large rounded-3xl bg-component p-middle lg:mt-20 lg:w-[30rem] lg:gap-5 lg:p-5">
         {/* From-To */}
         <div className="mt-8 flex items-center justify-between gap-small lg:gap-large">
           <Label text="From" className="w-[45%] lg:w-full" textClassName="font-medium text-sm" needAbsolute>

@@ -12,6 +12,6 @@ export const bscChain: ChainConfig = {
   /**
    * Custom
    */
-  logo: "bsc.svg",
+  logo: "bsc.png",
   tokens: [],
 };

@@ -12,6 +12,6 @@ export const mantleChain: ChainConfig = {
   /**
    * Custom
    */
-  logo: "mantle.svg",
+  logo: "mantle.png",
   tokens: [],
 };

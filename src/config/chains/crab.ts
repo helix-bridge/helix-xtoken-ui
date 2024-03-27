@@ -38,7 +38,7 @@ export const crabChain: ChainConfig = {
   /**
    * Custom
    */
-  logo: "crab.svg",
+  logo: "crab.png",
   tokens: [
     {
       decimals: 18,

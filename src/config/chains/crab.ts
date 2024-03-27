@@ -53,7 +53,6 @@ export const crabChain: ChainConfig = {
           bridge: { category: "xtoken-crab-dvm" },
           action: "issue",
         },
-        // { target: { network: "sepolia", symbol: "xCRAB" }, bridge: { category: "xtoken-crab-dvm" }, action: "issue" },
       ],
     },
     {

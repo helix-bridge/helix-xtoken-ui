@@ -49,7 +49,7 @@ export const darwiniaChain: ChainConfig = {
       address: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
       inner: "0x0000000000000000000000000000000000000000",
-      logo: "ring.svg",
+      logo: "ring.png",
       cross: [
         {
           target: { network: "crab-dvm", symbol: "xWRING" },
@@ -81,7 +81,7 @@ export const darwiniaChain: ChainConfig = {
       address: "0x0000000000000000000000000000000000000402",
       outer: "0x0000000000000000000000000000000000000402",
       inner: "0x0000000000000000000000000000000000000402",
-      logo: "kton.svg",
+      logo: "kton.png",
       cross: [
         {
           target: { network: "ethereum", symbol: "KTON" },
@@ -98,7 +98,7 @@ export const darwiniaChain: ChainConfig = {
       address: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
       outer: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
       inner: "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
-      logo: "crab.svg",
+      logo: "crab.png",
       cross: [
         {
           target: { network: "crab-dvm", symbol: "CRAB" },

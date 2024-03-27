@@ -48,7 +48,7 @@ export const crabChain: ChainConfig = {
       address: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
       inner: "0x0000000000000000000000000000000000000000",
-      logo: "crab.svg",
+      logo: "crab.png",
       cross: [
         {
           target: { network: "darwinia-dvm", symbol: "xWCRAB" },
@@ -65,7 +65,7 @@ export const crabChain: ChainConfig = {
       address: "0x273131F7CB50ac002BDd08cA721988731F7e1092",
       outer: "0x273131F7CB50ac002BDd08cA721988731F7e1092",
       inner: "0x273131F7CB50ac002BDd08cA721988731F7e1092",
-      logo: "ring.svg",
+      logo: "ring.png",
       cross: [
         {
           target: { network: "darwinia-dvm", symbol: "RING" },

@@ -23,7 +23,7 @@ export const ethereumChain: ChainConfig = {
       address: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
       inner: "0x0000000000000000000000000000000000000000",
-      logo: "eth.svg",
+      logo: "eth.png",
       cross: [],
     },
     {
@@ -34,7 +34,7 @@ export const ethereumChain: ChainConfig = {
       address: "0x9469d013805bffb7d3debe5e7839237e535ec483",
       outer: "0x9469d013805bffb7d3debe5e7839237e535ec483",
       inner: "0x9469d013805bffb7d3debe5e7839237e535ec483",
-      logo: "ring.svg",
+      logo: "ring.png",
       cross: [
         {
           target: { network: "darwinia-dvm", symbol: "RING" },
@@ -59,7 +59,7 @@ export const ethereumChain: ChainConfig = {
       address: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
       outer: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
       inner: "0x9f284e1337a815fe77d2ff4ae46544645b20c5ff",
-      logo: "kton.svg",
+      logo: "kton.png",
       cross: [
         {
           target: { network: "darwinia-dvm", symbol: "KTON" },

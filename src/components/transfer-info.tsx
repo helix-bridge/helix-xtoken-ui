@@ -95,14 +95,14 @@ function Item({ label, value, tips }: { label: string; value: ReactElement | str
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-small">
-        <span className="text-sm font-medium">{label}</span>
+        <span className="text-sm font-extrabold">{label}</span>
         {tips ? (
           <Tooltip content={tips}>
             <Image width={14} height={14} alt="Tips" src="/images/info.svg" />
           </Tooltip>
         ) : null}
       </div>
-      {typeof value === "string" ? <span className="text-sm font-medium">{value}</span> : value}
+      {typeof value === "string" ? <span className="text-sm font-extrabold">{value}</span> : value}
     </div>
   );
 }

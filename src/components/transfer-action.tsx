@@ -126,7 +126,7 @@ function Button({
       className="flex h-11 items-center justify-center rounded-2xl"
       onClick={onClick}
     >
-      <span className="text-base font-medium text-white">{children}</span>
+      <span className="text-base font-bold text-white">{children}</span>
     </BaseButton>
   );
 }

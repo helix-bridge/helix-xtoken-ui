@@ -28,6 +28,8 @@ export interface Token {
   name: string;
   type: TokenType;
   address: Address;
+  inner: Address; // Bridge-oriented
+  outer: Address; // User-oriented
   logo: string; // File name
   cross: CrossChain[];
 }

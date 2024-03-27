@@ -140,7 +140,7 @@ export default function TransferModal({ sender, recipient, transferAmount, isOpe
       </div>
 
       {txHash ? (
-        <div className="flex h-10 items-center rounded-xl bg-inner px-middle">
+        <div className="flex h-12 items-center rounded-xl bg-inner px-middle lg:px-3">
           <Progress
             confirmedBlocks={txProgressData?.historyRecordByTxHash?.confirmedBlocks}
             result={txProgressData?.historyRecordByTxHash?.result}
@@ -167,11 +167,11 @@ function SourceTarget({
   address?: Address | null;
 }) {
   return chain && token ? (
-    <div className="flex items-center justify-between rounded-xl bg-inner p-middle lg:p-5">
+    <div className="flex items-center justify-between rounded-xl bg-inner p-middle lg:p-3">
       {/* Left */}
       <div className="flex items-center gap-middle">
         <Image width={36} height={36} alt="Chain" src={getChainLogoSrc(chain.logo)} className="shrink-0 rounded-full" />
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start gap-small">
           <span className="text-base font-bold text-white">{chain.name}</span>
           <span className="hidden text-sm font-bold text-white/50 lg:inline">{address}</span>
           {address ? (
@@ -194,7 +194,7 @@ function SourceTarget({
 
 function Information({ fee, bridge }: { fee?: { value: bigint; token: Token }; bridge?: BaseBridge | null }) {
   return (
-    <div className="flex flex-col gap-small rounded-xl bg-inner p-middle">
+    <div className="flex flex-col gap-small rounded-xl bg-inner p-middle lg:p-3">
       <Item
         label="Transaction Fee"
         value={

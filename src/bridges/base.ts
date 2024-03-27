@@ -190,13 +190,21 @@ export abstract class BaseBridge {
 
   async getSourceAllowance(owner: Address) {
     if (this.contract && this.sourceToken && this.sourcePublicClient) {
-      return this.getAllowance(owner, this.contract.sourceAddress, this.sourceToken, this.sourcePublicClient);
+      const spender =
+        this.sourceToken.type === "native" || this.targetToken?.type === "native"
+          ? this.sourceChain?.convertor ?? this.contract.sourceAddress
+          : this.contract.sourceAddress;
+      return this.getAllowance(owner, spender, this.sourceToken, this.sourcePublicClient);
     }
   }
 
   async getTargetAllowance(owner: Address) {
     if (this.contract && this.targetToken && this.targetPublicClient) {
-      return this.getAllowance(owner, this.contract.targetAddress, this.targetToken, this.targetPublicClient);
+      const spender =
+        this.sourceToken?.type === "native" || this.targetToken.type === "native"
+          ? this.targetChain?.convertor ?? this.contract.targetAddress
+          : this.contract.targetAddress;
+      return this.getAllowance(owner, spender, this.targetToken, this.targetPublicClient);
     }
   }
 
@@ -217,14 +225,22 @@ export abstract class BaseBridge {
   async sourceApprove(amount: bigint, owner: Address) {
     await this.validateNetwork("source");
     if (this.sourceToken && this.contract) {
-      return this.approve(amount, owner, this.contract.sourceAddress, this.sourceToken);
+      const spender =
+        this.sourceToken.type === "native" || this.targetToken?.type === "native"
+          ? this.sourceChain?.convertor ?? this.contract.sourceAddress
+          : this.contract.sourceAddress;
+      return this.approve(amount, owner, spender, this.sourceToken);
     }
   }
 
   async targetApprove(amount: bigint, owner: Address) {
     await this.validateNetwork("target");
     if (this.targetToken && this.contract) {
-      return this.approve(amount, owner, this.contract.targetAddress, this.targetToken);
+      const spender =
+        this.sourceToken?.type === "native" || this.targetToken.type === "native"
+          ? this.targetChain?.convertor ?? this.contract.targetAddress
+          : this.contract.targetAddress;
+      return this.approve(amount, owner, spender, this.targetToken);
     }
   }
 

@@ -149,7 +149,7 @@ export default function Faucet() {
 
 function Item({ value, token }: { value: bigint; token?: Token }) {
   return (
-    <div className="flex items-center justify-between rounded-xl bg-inner px-middle py-middle">
+    <div className="flex items-center justify-between rounded-xl bg-inner px-middle py-3">
       <span className="text-sm font-semibold">{token && formatBalance(value, token.decimals)}</span>
       <span className="text-sm font-semibold">{token?.symbol}</span>
     </div>

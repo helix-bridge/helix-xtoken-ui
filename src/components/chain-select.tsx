@@ -81,8 +81,8 @@ export default function ChainSelect({
                 onClick={() => onChange(option)}
               >
                 <Image
-                  width={18}
-                  height={18}
+                  width={20}
+                  height={20}
                   alt="Chain logo"
                   src={getChainLogoSrc(option.logo)}
                   className="rounded-full"

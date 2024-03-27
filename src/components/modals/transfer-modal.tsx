@@ -172,21 +172,21 @@ function SourceTarget({
       <div className="flex items-center gap-middle">
         <Image width={36} height={36} alt="Chain" src={getChainLogoSrc(chain.logo)} className="shrink-0 rounded-full" />
         <div className="flex flex-col items-start">
-          <span className="text-base font-medium text-white">{chain.name}</span>
-          <span className="hidden text-sm font-medium text-white/50 lg:inline">{address}</span>
+          <span className="text-base font-bold text-white">{chain.name}</span>
+          <span className="hidden text-sm font-bold text-white/50 lg:inline">{address}</span>
           {address ? (
-            <span className="text-sm font-medium text-white/50 lg:hidden">{toShortAdrress(address, 8, 6)}</span>
+            <span className="text-sm font-bold text-white/50 lg:hidden">{toShortAdrress(address, 8, 6)}</span>
           ) : null}
         </div>
       </div>
 
       {/* Right */}
       <div className="flex flex-col items-end">
-        <span className={`text-base font-medium ${type === "source" ? "text-app-red" : "text-app-green"}`}>
+        <span className={`text-base font-bold ${type === "source" ? "text-app-red" : "text-app-green"}`}>
           {type === "source" ? "-" : "+"}
           {formatBalance(parseUnits(transferAmount.input, token.decimals), token.decimals)}
         </span>
-        <span className="text-sm font-medium text-white">{token.symbol}</span>
+        <span className="text-sm font-bold text-white">{token.symbol}</span>
       </div>
     </div>
   ) : null;
@@ -210,7 +210,7 @@ function Information({ fee, bridge }: { fee?: { value: bigint; token: Token }; b
 
 function Item({ label, value }: { label: string; value?: string | null }) {
   return (
-    <div className="flex items-center justify-between gap-middle text-sm font-medium text-white">
+    <div className="flex items-center justify-between gap-middle text-sm font-bold text-white">
       <span>{label}</span>
       <span className="truncate">{value}</span>
     </div>
@@ -238,8 +238,8 @@ function Progress({
       return (
         <div className="flex w-full items-center justify-between">
           <div className="inline-flex">
-            <span className="text-sm font-medium">LnProvider relay finished. Go to&nbsp;</span>
-            <Link href={`/records/${id}`} className="text-sm font-medium text-primary hover:underline">
+            <span className="text-sm font-bold">LnProvider relay finished. Go to&nbsp;</span>
+            <Link href={`/records/${id}`} className="text-sm font-bold text-primary hover:underline">
               Detail
             </Link>
           </div>
@@ -249,7 +249,7 @@ function Progress({
     } else {
       return (
         <div className="flex w-full items-center justify-between">
-          <span className="text-sm font-medium">{`Waiting for LnProvider relay message(${confirmedBlocks})`}</span>
+          <span className="text-sm font-bold">{`Waiting for LnProvider relay message(${confirmedBlocks})`}</span>
           <ProgressIcon percent={(finished * 100) / total} />
         </div>
       );
@@ -257,7 +257,7 @@ function Progress({
   } else {
     return (
       <div className="flex w-full items-center justify-between">
-        <span className="text-sm font-medium">Waiting for indexing...</span>
+        <span className="text-sm font-bold">Waiting for indexing...</span>
         <ProgressIcon percent={10} />
       </div>
     );

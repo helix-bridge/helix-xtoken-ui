@@ -277,7 +277,8 @@ export class XTokenNextBridge extends BaseBridge {
       this.contract &&
       this.publicClient &&
       this.walletClient &&
-      this.sourceToken
+      this.sourceToken &&
+      this.targetToken
     ) {
       let originalSender = record.sender;
       if (this.sourceToken?.type === "native" || this.targetToken?.type === "native") {
@@ -341,7 +342,7 @@ export class XTokenNextBridge extends BaseBridge {
           functionName: "rollbackBurnAndXUnlock",
           args: [
             BigInt(this.targetChain.id),
-            this.sourceToken.inner,
+            this.targetToken.inner,
             originalSender,
             pRecipient,
             record.sender,

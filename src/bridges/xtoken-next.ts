@@ -373,7 +373,7 @@ export class XTokenNextBridge extends BaseBridge {
             functionName: "xRollbackBurnAndXUnlock",
             args: [
               BigInt(this.sourceChain.id),
-              this.sourceToken.inner,
+              this.targetToken.inner,
               originalSender,
               pRecipient,
               record.sender,

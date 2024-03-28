@@ -23,6 +23,12 @@ export class XTokenNextBridge extends BaseBridge {
     ) {
       backing = "0x24f8a04F0cA0730F4b8eC3241F15aCc6b3f8Da0a";
       issuing = "0x1aeC008Af5c604be3525d0bB70fFcc4D7281f30C";
+    } else if (
+      (this.sourceChain?.network === "darwinia-dvm" && this.targetChain?.network === "crab-dvm") ||
+      (this.sourceChain?.network === "crab-dvm" && this.targetChain?.network === "darwinia-dvm")
+    ) {
+      backing = "0xa64D1c284280b22f921E7B2A55040C7bbfD4d9d0";
+      issuing = "0xf6372ab2d35B32156A19F2d2F23FA6dDeFBE58bd";
     }
     this.initContractByBackingIssuing(backing, issuing);
   }

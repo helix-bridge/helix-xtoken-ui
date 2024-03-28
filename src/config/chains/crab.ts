@@ -47,7 +47,7 @@ export const crabChain: ChainConfig = {
       type: "native",
       address: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
-      inner: "0x0000000000000000000000000000000000000000",
+      inner: "0x2D2b97EA380b0185e9fDF8271d1AFB5d2Bf18329",
       logo: "crab.png",
       cross: [
         {
@@ -78,4 +78,5 @@ export const crabChain: ChainConfig = {
   messager: {
     msgline: "0x65Be094765731F394bc6d9DF53bDF3376F1Fc8B0",
   },
+  convertor: "0x004D0dE211BC148c3Ce696C51Cbc85BD421727E9",
 };

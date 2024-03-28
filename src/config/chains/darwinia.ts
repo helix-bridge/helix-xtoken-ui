@@ -48,7 +48,7 @@ export const darwiniaChain: ChainConfig = {
       type: "native",
       address: "0x0000000000000000000000000000000000000000",
       outer: "0x0000000000000000000000000000000000000000",
-      inner: "0x0000000000000000000000000000000000000000",
+      inner: "0xE7578598Aac020abFB918f33A20faD5B71d670b4",
       logo: "ring.png",
       cross: [
         {
@@ -109,4 +109,5 @@ export const darwiniaChain: ChainConfig = {
     },
   ],
   messager: { msgline: "0x65Be094765731F394bc6d9DF53bDF3376F1Fc8B0" },
+  convertor: "0xA8d0E9a45249Ec839C397fa0F371f5F64eCAB7F7",
 };

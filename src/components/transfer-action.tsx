@@ -34,7 +34,8 @@ export default function TransferAction({ recipient, transferable, transferAmount
 
   const { btnText, btnDisabled, approveAmount } = useMemo(() => {
     let btnDisabled = false;
-    let btnText: "Transfer" | "Approve" | "Switch Network" | "Connect Wallet" = "Transfer";
+    let btnText: "Deposit" | "Withdraw" | "Approve" | "Switch Network" | "Connect Wallet" =
+      bridgeInstance?.getCrossInfo()?.action === "redeem" ? "Withdraw" : "Deposit";
     const feeValue = bridgeFee ? (bridgeFee.token.type === "native" ? 0n : bridgeFee.value) : 0n;
     const transferValue = sourceToken?.type === "native" ? 0n : transferAmount.value;
     const approveAmount = feeValue + transferValue;
@@ -90,7 +91,7 @@ export default function TransferAction({ recipient, transferable, transferAmount
         await sourceApprove(address, approveAmount, bridgeInstance, sourceChain);
         setBusy(false);
       }
-    } else if (btnText === "Transfer") {
+    } else if (btnText === "Deposit" || btnText === "Withdraw") {
       onTransfer();
     }
   }, [
@@ -126,7 +127,7 @@ function Button({
       className="flex h-11 items-center justify-center rounded-2xl"
       onClick={onClick}
     >
-      <span className="text-base font-bold text-white">{children}</span>
+      <span className="text-sm font-bold text-white">{children}</span>
     </BaseButton>
   );
 }

@@ -70,6 +70,12 @@ export const darwiniaChain: ChainConfig = {
           bridge: { category: "helix-sub2ethv2(lock)" },
           action: "issue",
           min: 1000000000000000000000000n,
+          hidden: true,
+        },
+        {
+          target: { network: "ethereum", symbol: "RING" },
+          bridge: { category: "xtoken-darwinia-dvm" },
+          action: "issue",
         },
       ],
     },
@@ -86,6 +92,12 @@ export const darwiniaChain: ChainConfig = {
         {
           target: { network: "ethereum", symbol: "KTON" },
           bridge: { category: "helix-sub2ethv2(lock)" },
+          action: "issue",
+          hidden: true,
+        },
+        {
+          target: { network: "ethereum", symbol: "KTON" },
+          bridge: { category: "xtoken-darwinia-dvm" },
           action: "issue",
         },
       ],

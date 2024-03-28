@@ -25,6 +25,7 @@ export function bridgeFactory(args: BridgeConstructorArgs): BaseBridge | undefin
     case "xtoken-crab-dvm":
     case "xtoken-pangolin-dvm":
     case "xtoken-sepolia":
+    case "xtoken-ethereum":
       return new XTokenNextBridge(args);
     default:
       return;

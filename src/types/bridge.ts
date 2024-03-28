@@ -18,7 +18,12 @@ export type HelixBridgeCategory =
   | "helix-sub2ethv2(unlock)"
   | "helix-sub2subv21(unlock)"
   | "helix-sub2subv21(lock)";
-export type XTokenBridgeCategory = "xtoken-sepolia" | "xtoken-darwinia-dvm" | "xtoken-crab-dvm" | "xtoken-pangolin-dvm";
+export type XTokenBridgeCategory =
+  | "xtoken-sepolia"
+  | "xtoken-ethereum"
+  | "xtoken-darwinia-dvm"
+  | "xtoken-crab-dvm"
+  | "xtoken-pangolin-dvm";
 export type BridgeCategory =
   | LnBridgeCategory
   | L2BridgeCategory

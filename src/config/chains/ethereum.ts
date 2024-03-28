@@ -48,6 +48,12 @@ export const ethereumChain: ChainConfig = {
           target: { network: "darwinia-dvm", symbol: "RING" },
           bridge: { category: "helix-sub2ethv2(unlock)" },
           action: "redeem",
+          hidden: true,
+        },
+        {
+          target: { network: "darwinia-dvm", symbol: "RING" },
+          bridge: { category: "xtoken-ethereum" },
+          action: "redeem",
         },
       ],
     },
@@ -64,6 +70,12 @@ export const ethereumChain: ChainConfig = {
         {
           target: { network: "darwinia-dvm", symbol: "KTON" },
           bridge: { category: "helix-sub2ethv2(unlock)" },
+          action: "redeem",
+          hidden: true,
+        },
+        {
+          target: { network: "darwinia-dvm", symbol: "KTON" },
+          bridge: { category: "xtoken-ethereum" },
           action: "redeem",
         },
       ],

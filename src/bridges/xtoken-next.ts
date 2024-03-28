@@ -324,6 +324,8 @@ export class XTokenNextBridge extends BaseBridge {
               BigInt(nonce ?? 0),
               feeAndParams.extParams,
             ],
+            gas: this.getTxGasLimit(),
+            value: feeAndParams.fee,
           });
           return this.publicClient.waitForTransactionReceipt({ hash });
         }
@@ -372,6 +374,8 @@ export class XTokenNextBridge extends BaseBridge {
               BigInt(nonce ?? 0),
               feeAndParams.extParams,
             ],
+            gas: this.getTxGasLimit(),
+            value: feeAndParams.fee,
           });
           return this.publicClient.waitForTransactionReceipt({ hash });
         }

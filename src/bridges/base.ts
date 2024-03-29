@@ -191,20 +191,14 @@ export abstract class BaseBridge {
 
   async getSourceAllowance(owner: Address) {
     if (this.contract && this.sourceToken && this.sourcePublicClient) {
-      const spender =
-        this.sourceToken.type === "native" || this.targetToken?.type === "native"
-          ? this.convertor?.source ?? this.contract.sourceAddress
-          : this.contract.sourceAddress;
+      const spender = this.convertor?.source ?? this.contract.sourceAddress;
       return this.getAllowance(owner, spender, this.sourceToken, this.sourcePublicClient);
     }
   }
 
   async getTargetAllowance(owner: Address) {
     if (this.contract && this.targetToken && this.targetPublicClient) {
-      const spender =
-        this.sourceToken?.type === "native" || this.targetToken.type === "native"
-          ? this.convertor?.target ?? this.contract.targetAddress
-          : this.contract.targetAddress;
+      const spender = this.convertor?.target ?? this.contract.targetAddress;
       return this.getAllowance(owner, spender, this.targetToken, this.targetPublicClient);
     }
   }
@@ -226,10 +220,7 @@ export abstract class BaseBridge {
   async sourceApprove(amount: bigint, owner: Address) {
     await this.validateNetwork("source");
     if (this.sourceToken && this.contract) {
-      const spender =
-        this.sourceToken.type === "native" || this.targetToken?.type === "native"
-          ? this.convertor?.source ?? this.contract.sourceAddress
-          : this.contract.sourceAddress;
+      const spender = this.convertor?.source ?? this.contract.sourceAddress;
       return this.approve(amount, owner, spender, this.sourceToken);
     }
   }
@@ -237,10 +228,7 @@ export abstract class BaseBridge {
   async targetApprove(amount: bigint, owner: Address) {
     await this.validateNetwork("target");
     if (this.targetToken && this.contract) {
-      const spender =
-        this.sourceToken?.type === "native" || this.targetToken.type === "native"
-          ? this.convertor?.target ?? this.contract.targetAddress
-          : this.contract.targetAddress;
+      const spender = this.convertor?.target ?? this.contract.targetAddress;
       return this.approve(amount, owner, spender, this.targetToken);
     }
   }

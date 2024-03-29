@@ -35,19 +35,39 @@ export class XTokenNextBridge extends BaseBridge {
   }
 
   private _initConvertor() {
-    if (this.sourceChain?.network === "pangolin-dvm" && this.targetChain?.network === "sepolia") {
+    if (
+      this.sourceChain?.network === "pangolin-dvm" &&
+      this.targetChain?.network === "sepolia" &&
+      this.sourceToken?.type === "native"
+    ) {
+      // Issue native token
       this.convertor = {
         source: "0xB3A8DB63d6FBE0f50A3D4977c3e892543D772C4A",
         target: "0x4CdFe9915d2c72506f4fC2363A8EaE032E82d1aA",
       };
-    } else if (this.sourceChain?.network === "sepolia" && this.targetChain?.network === "pangolin-dvm") {
+    } else if (
+      this.sourceChain?.network === "sepolia" &&
+      this.targetChain?.network === "pangolin-dvm" &&
+      this.targetToken?.type === "native"
+    ) {
+      // Redeem native token
       this.convertor = {
         source: "0x4CdFe9915d2c72506f4fC2363A8EaE032E82d1aA",
         target: "0xB3A8DB63d6FBE0f50A3D4977c3e892543D772C4A",
       };
-    } else if (this.sourceChain?.network === "darwinia-dvm" && this.targetChain?.network === "crab-dvm") {
+    } else if (
+      this.sourceChain?.network === "darwinia-dvm" &&
+      this.targetChain?.network === "crab-dvm" &&
+      this.sourceToken?.type === "native"
+    ) {
+      // Issue native token
       this.convertor = { source: "0xA8d0E9a45249Ec839C397fa0F371f5F64eCAB7F7" };
-    } else if (this.sourceChain?.network === "crab-dvm" && this.targetChain?.network === "darwinia-dvm") {
+    } else if (
+      this.sourceChain?.network === "crab-dvm" &&
+      this.targetChain?.network === "darwinia-dvm" &&
+      this.sourceToken?.type === "native"
+    ) {
+      // Issue native token
       this.convertor = { source: "0x004D0dE211BC148c3Ce696C51Cbc85BD421727E9" };
     }
   }
@@ -79,7 +99,7 @@ export class XTokenNextBridge extends BaseBridge {
       const gas = this.getTxGasLimit();
 
       if (this.crossInfo?.action === "issue") {
-        if (this.sourceToken?.type === "native" && this.convertor?.source) {
+        if (this.convertor?.source) {
           const hash = await this.walletClient.writeContract({
             abi: (await import("@/abi/wtoken-convertor")).default,
             functionName: "lockAndXIssue",
@@ -110,7 +130,7 @@ export class XTokenNextBridge extends BaseBridge {
           return this.publicClient.waitForTransactionReceipt({ hash });
         }
       } else if (this.crossInfo?.action === "redeem") {
-        if (this.targetToken?.type === "native" && this.convertor?.source) {
+        if (this.convertor?.source) {
           const hash = await this.walletClient.writeContract({
             abi: (await import("@/abi/xtoken-convertor")).default,
             functionName: "burnAndXUnlock",
@@ -136,12 +156,11 @@ export class XTokenNextBridge extends BaseBridge {
   }
 
   private async _getExtDataAndRecipient(defaultRecipient: Address) {
-    const isNativeToken = this.sourceToken?.type === "native" || this.targetToken?.type === "native";
     const guard = await this._getTargetGuard();
     let recipient = defaultRecipient;
     let extData: Hash = "0x";
 
-    if (guard && this.convertor?.target && isNativeToken) {
+    if (guard && this.convertor?.target) {
       // Guard, convertor
       recipient = guard;
       extData = encodeAbiParameters(
@@ -151,7 +170,7 @@ export class XTokenNextBridge extends BaseBridge {
         ],
         [this.convertor.target, defaultRecipient],
       );
-    } else if (this.convertor?.target && isNativeToken) {
+    } else if (this.convertor?.target) {
       // No guard, convertor
       recipient = this.convertor.target;
       extData = defaultRecipient;
@@ -186,10 +205,7 @@ export class XTokenNextBridge extends BaseBridge {
       this.sourcePublicClient
     ) {
       let message: Hash | undefined;
-      let originalSender = sender;
-      if (this.sourceToken.type === "native" || this.targetToken?.type === "native") {
-        originalSender = this.convertor?.source ?? sender;
-      }
+      const originalSender = this.convertor?.source ?? sender;
       const { recipient: pRecipient, extData } = await this._getExtDataAndRecipient(recipient);
 
       if (this.crossInfo?.action === "issue") {
@@ -208,7 +224,6 @@ export class XTokenNextBridge extends BaseBridge {
           ],
         });
       } else if (this.crossInfo?.action === "redeem") {
-        console.log("original token:", this.targetToken.symbol, this.targetToken.inner);
         message = encodeFunctionData({
           abi: (await import("@/abi/xtoken-backing-next")).default,
           functionName: "unlock",
@@ -307,10 +322,7 @@ export class XTokenNextBridge extends BaseBridge {
       this.sourceToken &&
       this.targetToken
     ) {
-      let originalSender = record.sender;
-      if (this.sourceToken?.type === "native" || this.targetToken?.type === "native") {
-        originalSender = this.convertor?.source ?? record.sender;
-      }
+      const originalSender = this.convertor?.source ?? record.sender;
       const { recipient: pRecipient } = await this._getExtDataAndRecipient(record.recipient);
 
       if (this.crossInfo?.action === "issue") {

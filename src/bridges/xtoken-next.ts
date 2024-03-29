@@ -12,6 +12,7 @@ export class XTokenNextBridge extends BaseBridge {
     };
     this.name = "xToken";
     this._initContract();
+    this._initConvertor();
   }
 
   private _initContract() {
@@ -31,6 +32,24 @@ export class XTokenNextBridge extends BaseBridge {
       issuing = "0xf6372ab2d35B32156A19F2d2F23FA6dDeFBE58bd";
     }
     this.initContractByBackingIssuing(backing, issuing);
+  }
+
+  private _initConvertor() {
+    if (this.sourceChain?.network === "pangolin-dvm" && this.targetChain?.network === "sepolia") {
+      this.convertor = {
+        source: "0xB3A8DB63d6FBE0f50A3D4977c3e892543D772C4A",
+        target: "0x4CdFe9915d2c72506f4fC2363A8EaE032E82d1aA",
+      };
+    } else if (this.sourceChain?.network === "sepolia" && this.targetChain?.network === "pangolin-dvm") {
+      this.convertor = {
+        source: "0x4CdFe9915d2c72506f4fC2363A8EaE032E82d1aA",
+        target: "0xB3A8DB63d6FBE0f50A3D4977c3e892543D772C4A",
+      };
+    } else if (this.sourceChain?.network === "darwinia-dvm" && this.targetChain?.network === "crab-dvm") {
+      this.convertor = { source: "0xA8d0E9a45249Ec839C397fa0F371f5F64eCAB7F7" };
+    } else if (this.sourceChain?.network === "crab-dvm" && this.targetChain?.network === "darwinia-dvm") {
+      this.convertor = { source: "0x004D0dE211BC148c3Ce696C51Cbc85BD421727E9" };
+    }
   }
 
   protected async _transfer(
@@ -60,18 +79,16 @@ export class XTokenNextBridge extends BaseBridge {
       const gas = this.getTxGasLimit();
 
       if (this.crossInfo?.action === "issue") {
-        if (this.sourceToken?.type === "native") {
-          if (this.sourceChain?.convertor) {
-            const hash = await this.walletClient.writeContract({
-              abi: (await import("@/abi/wtoken-convertor")).default,
-              functionName: "lockAndXIssue",
-              args: [BigInt(this.targetChain.id), pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
-              address: this.sourceChain.convertor,
-              value,
-              gas,
-            });
-            return this.publicClient.waitForTransactionReceipt({ hash });
-          }
+        if (this.sourceToken?.type === "native" && this.convertor?.source) {
+          const hash = await this.walletClient.writeContract({
+            abi: (await import("@/abi/wtoken-convertor")).default,
+            functionName: "lockAndXIssue",
+            args: [BigInt(this.targetChain.id), pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
+            address: this.convertor.source,
+            value,
+            gas,
+          });
+          return this.publicClient.waitForTransactionReceipt({ hash });
         } else {
           const hash = await this.walletClient.writeContract({
             abi: (await import("@/abi/xtoken-backing-next")).default,
@@ -93,18 +110,16 @@ export class XTokenNextBridge extends BaseBridge {
           return this.publicClient.waitForTransactionReceipt({ hash });
         }
       } else if (this.crossInfo?.action === "redeem") {
-        if (this.targetToken?.type === "native") {
-          if (this.sourceChain?.convertor) {
-            const hash = await this.walletClient.writeContract({
-              abi: (await import("@/abi/xtoken-convertor")).default,
-              functionName: "burnAndXUnlock",
-              args: [pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
-              address: this.sourceChain.convertor,
-              value,
-              gas,
-            });
-            return this.publicClient.waitForTransactionReceipt({ hash });
-          }
+        if (this.targetToken?.type === "native" && this.convertor?.source) {
+          const hash = await this.walletClient.writeContract({
+            abi: (await import("@/abi/xtoken-convertor")).default,
+            functionName: "burnAndXUnlock",
+            args: [pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
+            address: this.convertor.source,
+            value,
+            gas,
+          });
+          return this.publicClient.waitForTransactionReceipt({ hash });
         } else {
           const hash = await this.walletClient.writeContract({
             abi: (await import("@/abi/xtoken-issuing-next")).default,
@@ -121,42 +136,39 @@ export class XTokenNextBridge extends BaseBridge {
   }
 
   private async _getExtDataAndRecipient(defaultRecipient: Address) {
+    const isNativeToken = this.sourceToken?.type === "native" || this.targetToken?.type === "native";
     const guard = await this._getTargetGuard();
     let recipient = defaultRecipient;
     let extData: Hash = "0x";
 
-    if (this.sourceToken?.type === "native" || this.targetToken?.type === "native") {
-      if (guard && this.targetChain?.convertor) {
-        // Guard, convertor
-        recipient = guard;
-        extData = encodeAbiParameters(
-          [
-            { name: "x", type: "address" },
-            { name: "y", type: "bytes" },
-          ],
-          [this.targetChain.convertor, defaultRecipient],
-        );
-      } else if (this.targetChain?.convertor) {
-        // No guard, convertor
-        recipient = this.targetChain.convertor;
-        extData = defaultRecipient;
-      }
+    if (guard && this.convertor?.target && isNativeToken) {
+      // Guard, convertor
+      recipient = guard;
+      extData = encodeAbiParameters(
+        [
+          { name: "x", type: "address" },
+          { name: "y", type: "bytes" },
+        ],
+        [this.convertor.target, defaultRecipient],
+      );
+    } else if (this.convertor?.target && isNativeToken) {
+      // No guard, convertor
+      recipient = this.convertor.target;
+      extData = defaultRecipient;
+    } else if (guard) {
+      // Guard, no convertor
+      recipient = guard;
+      extData = encodeAbiParameters(
+        [
+          { name: "x", type: "address" },
+          { name: "y", type: "bytes" },
+        ],
+        [defaultRecipient, "0x"],
+      );
     } else {
-      if (guard) {
-        // Guard, no convertor
-        recipient = guard;
-        extData = encodeAbiParameters(
-          [
-            { name: "x", type: "address" },
-            { name: "y", type: "bytes" },
-          ],
-          [defaultRecipient, "0x"],
-        );
-      } else {
-        // No guard, no convertor
-        recipient = defaultRecipient;
-        extData = "0x";
-      }
+      // No guard, no convertor
+      recipient = defaultRecipient;
+      extData = "0x";
     }
     return { recipient, extData };
   }
@@ -165,36 +177,51 @@ export class XTokenNextBridge extends BaseBridge {
     const sourceMessager = this.sourceChain?.messager?.msgline;
     const targetMessager = this.targetChain?.messager?.msgline;
 
-    if (sourceMessager && targetMessager && this.contract && this.sourceToken && this.sourcePublicClient) {
+    if (
+      sourceMessager &&
+      targetMessager &&
+      this.contract &&
+      this.sourceToken &&
+      this.targetToken &&
+      this.sourcePublicClient
+    ) {
       let message: Hash | undefined;
       let originalSender = sender;
       if (this.sourceToken.type === "native" || this.targetToken?.type === "native") {
-        originalSender = this.sourceChain.convertor ?? sender;
+        originalSender = this.convertor?.source ?? sender;
       }
       const { recipient: pRecipient, extData } = await this._getExtDataAndRecipient(recipient);
-
-      const args = [
-        BigInt(this.sourceChain.id),
-        this.sourceToken.inner,
-        originalSender,
-        pRecipient,
-        sender,
-        amount,
-        nonce,
-        extData,
-      ] as const;
 
       if (this.crossInfo?.action === "issue") {
         message = encodeFunctionData({
           abi: (await import("@/abi/xtoken-issuing-next")).default,
           functionName: "issue",
-          args,
+          args: [
+            BigInt(this.sourceChain.id),
+            this.sourceToken.inner,
+            originalSender,
+            pRecipient,
+            sender,
+            amount,
+            nonce,
+            extData,
+          ],
         });
       } else if (this.crossInfo?.action === "redeem") {
+        console.log("original token:", this.targetToken.symbol, this.targetToken.inner);
         message = encodeFunctionData({
           abi: (await import("@/abi/xtoken-backing-next")).default,
           functionName: "unlock",
-          args,
+          args: [
+            BigInt(this.sourceChain.id),
+            this.targetToken.inner,
+            originalSender,
+            pRecipient,
+            sender,
+            amount,
+            nonce,
+            extData,
+          ],
         });
       }
 
@@ -282,7 +309,7 @@ export class XTokenNextBridge extends BaseBridge {
     ) {
       let originalSender = record.sender;
       if (this.sourceToken?.type === "native" || this.targetToken?.type === "native") {
-        originalSender = this.sourceChain.convertor ?? record.sender;
+        originalSender = this.convertor?.source ?? record.sender;
       }
       const { recipient: pRecipient } = await this._getExtDataAndRecipient(record.recipient);
 

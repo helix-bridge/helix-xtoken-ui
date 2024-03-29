@@ -60,7 +60,6 @@ export interface ChainConfig extends Chain {
    */
   logo: string; // File name
   tokens: Token[];
-  convertor?: Address;
   messager?: { msgline?: Address };
   hidden?: boolean;
 }

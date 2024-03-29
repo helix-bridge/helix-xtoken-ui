@@ -121,5 +121,4 @@ export const darwiniaChain: ChainConfig = {
     },
   ],
   messager: { msgline: "0x65Be094765731F394bc6d9DF53bDF3376F1Fc8B0" },
-  convertor: "0xA8d0E9a45249Ec839C397fa0F371f5F64eCAB7F7",
 };

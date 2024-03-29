@@ -22,6 +22,7 @@ export abstract class BaseBridge {
 
   protected readonly category: BridgeCategory;
   protected contract: BridgeContract | undefined;
+  protected convertor: { source?: Address; target?: Address } | undefined;
 
   protected readonly sourceChain?: ChainConfig;
   protected readonly targetChain?: ChainConfig;
@@ -192,7 +193,7 @@ export abstract class BaseBridge {
     if (this.contract && this.sourceToken && this.sourcePublicClient) {
       const spender =
         this.sourceToken.type === "native" || this.targetToken?.type === "native"
-          ? this.sourceChain?.convertor ?? this.contract.sourceAddress
+          ? this.convertor?.source ?? this.contract.sourceAddress
           : this.contract.sourceAddress;
       return this.getAllowance(owner, spender, this.sourceToken, this.sourcePublicClient);
     }
@@ -202,7 +203,7 @@ export abstract class BaseBridge {
     if (this.contract && this.targetToken && this.targetPublicClient) {
       const spender =
         this.sourceToken?.type === "native" || this.targetToken.type === "native"
-          ? this.targetChain?.convertor ?? this.contract.targetAddress
+          ? this.convertor?.target ?? this.contract.targetAddress
           : this.contract.targetAddress;
       return this.getAllowance(owner, spender, this.targetToken, this.targetPublicClient);
     }
@@ -227,7 +228,7 @@ export abstract class BaseBridge {
     if (this.sourceToken && this.contract) {
       const spender =
         this.sourceToken.type === "native" || this.targetToken?.type === "native"
-          ? this.sourceChain?.convertor ?? this.contract.sourceAddress
+          ? this.convertor?.source ?? this.contract.sourceAddress
           : this.contract.sourceAddress;
       return this.approve(amount, owner, spender, this.sourceToken);
     }
@@ -238,7 +239,7 @@ export abstract class BaseBridge {
     if (this.targetToken && this.contract) {
       const spender =
         this.sourceToken?.type === "native" || this.targetToken.type === "native"
-          ? this.targetChain?.convertor ?? this.contract.targetAddress
+          ? this.convertor?.target ?? this.contract.targetAddress
           : this.contract.targetAddress;
       return this.approve(amount, owner, spender, this.targetToken);
     }

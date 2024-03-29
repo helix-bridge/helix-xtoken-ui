@@ -72,39 +72,37 @@ export class XTokenNextBridge extends BaseBridge {
     amount: bigint,
     options?: (TransferOptions & { askEstimateGas?: boolean | undefined }) | undefined,
   ): Promise<bigint | TransactionReceipt | undefined> {
+    const account = await this.getSigner();
     const askEstimateGas = options?.askEstimateGas ?? false;
-    if (askEstimateGas) {
-      return undefined;
-    }
 
     const nonce = BigInt(Date.now());
     const { recipient: pRecipient, extData } = await this._getExtDataAndRecipient(recipient);
     const feeAndParams = await this._getTransferFeeAndParams(sender, recipient, amount, nonce);
 
-    if (
-      feeAndParams &&
-      this.contract &&
-      this.sourceToken &&
-      this.targetChain &&
-      this.walletClient &&
-      this.publicClient
-    ) {
+    if (account && feeAndParams && this.contract && this.sourceToken && this.targetChain && this.sourcePublicClient) {
       const value = this.sourceToken.type === "native" ? amount + feeAndParams.fee : feeAndParams.fee;
       const gas = this.getTxGasLimit();
 
       if (this.crossInfo?.action === "issue") {
         if (this.convertor?.source) {
-          const hash = await this.walletClient.writeContract({
+          const defaultParams = {
             abi: (await import("@/abi/wtoken-convertor")).default,
             functionName: "lockAndXIssue",
             args: [BigInt(this.targetChain.id), pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
             address: this.convertor.source,
+            account,
             value,
             gas,
-          });
-          return this.publicClient.waitForTransactionReceipt({ hash });
+          } as const;
+
+          if (askEstimateGas) {
+            return this.sourcePublicClient.estimateContractGas(defaultParams);
+          } else if (this.walletClient) {
+            const hash = await this.walletClient.writeContract(defaultParams);
+            return this.sourcePublicClient.waitForTransactionReceipt({ hash });
+          }
         } else {
-          const hash = await this.walletClient.writeContract({
+          const defaultParams = {
             abi: (await import("@/abi/xtoken-backing-next")).default,
             functionName: "lockAndXIssue",
             args: [
@@ -118,32 +116,53 @@ export class XTokenNextBridge extends BaseBridge {
               feeAndParams.extParams,
             ],
             address: this.contract.sourceAddress,
+            account,
             value,
             gas,
-          });
-          return this.publicClient.waitForTransactionReceipt({ hash });
+          } as const;
+
+          if (askEstimateGas) {
+            return this.sourcePublicClient.estimateContractGas(defaultParams);
+          } else if (this.walletClient) {
+            const hash = await this.walletClient.writeContract(defaultParams);
+            return this.sourcePublicClient.waitForTransactionReceipt({ hash });
+          }
         }
       } else if (this.crossInfo?.action === "redeem") {
         if (this.convertor?.source) {
-          const hash = await this.walletClient.writeContract({
+          const defaultParams = {
             abi: (await import("@/abi/xtoken-convertor")).default,
             functionName: "burnAndXUnlock",
             args: [pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
             address: this.convertor.source,
+            account,
             value,
             gas,
-          });
-          return this.publicClient.waitForTransactionReceipt({ hash });
+          } as const;
+
+          if (askEstimateGas) {
+            return this.sourcePublicClient.estimateContractGas(defaultParams);
+          } else if (this.walletClient) {
+            const hash = await this.walletClient.writeContract(defaultParams);
+            return this.sourcePublicClient.waitForTransactionReceipt({ hash });
+          }
         } else {
-          const hash = await this.walletClient.writeContract({
+          const defaultParams = {
             abi: (await import("@/abi/xtoken-issuing-next")).default,
             functionName: "burnAndXUnlock",
             args: [this.sourceToken.inner, pRecipient, sender, amount, nonce, extData, feeAndParams.extParams],
             address: this.contract.sourceAddress,
+            account,
             value,
             gas,
-          });
-          return this.publicClient.waitForTransactionReceipt({ hash });
+          } as const;
+
+          if (askEstimateGas) {
+            return this.sourcePublicClient.estimateContractGas(defaultParams);
+          } else if (this.walletClient) {
+            const hash = await this.walletClient.writeContract(defaultParams);
+            return this.sourcePublicClient.waitForTransactionReceipt({ hash });
+          }
         }
       }
     }

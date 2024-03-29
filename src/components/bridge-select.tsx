@@ -45,7 +45,7 @@ export default function BridgeSelect({ value, options = [], onChange = () => und
 function bridgeName(category: BridgeCategory | null | undefined) {
   if (category) {
     const bridge = bridgeFactory({ category });
-    return bridge ? bridge.getName() : category === "lnbridge" ? "Helix LnBridge" : undefined;
+    return bridge?.getName();
   }
   return undefined;
 }

@@ -52,7 +52,7 @@ export default function TransferAction({ recipient, transferable, transferAmount
           sourceToken &&
           targetToken &&
           bridgeInstance &&
-          (bridgeInstance.getCategory().startsWith("xtoken") || bridgeFee) &&
+          bridgeFee &&
           transferable &&
           transferAmount.input &&
           transferAmount.valid &&

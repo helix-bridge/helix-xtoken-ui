@@ -91,20 +91,12 @@ export abstract class BaseBridge {
     options?: TransferOptions & { askEstimateGas?: boolean },
   ): Promise<TransactionReceipt | bigint | undefined>;
 
-  isLnBridge() {
-    return false;
-  }
-
   getLogo() {
     return this.logo;
   }
 
   getName() {
     return this.name;
-  }
-
-  getCategory() {
-    return this.category;
   }
 
   getContract() {

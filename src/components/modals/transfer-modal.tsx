@@ -35,15 +35,6 @@ export default function TransferModal({ sender, recipient, transferAmount, isOpe
   const [busy, setBusy] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-  const { data: txProgressData } = useQuery<HistoryRecordByTxHashResData, HistoryRecordByTxHashReqParams>(
-    GQL_HISTORY_RECORD_BY_TX_HASH,
-    {
-      variables: { txHash },
-      pollInterval: txHash === "0x" ? 0 : 300,
-      skip: txHash === "0x",
-    },
-  );
-
   const handleTransfer = useCallback(async () => {
     if (sender && recipient && sourceChain && bridgeInstance) {
       setBusy(true);
@@ -126,14 +117,17 @@ export default function TransferModal({ sender, recipient, transferAmount, isOpe
         <Information fee={bridgeFee} bridge={bridgeInstance} />
       </div>
 
-      {txHash ? (
-        <div className="flex h-12 items-center rounded-xl bg-inner px-middle lg:px-3">
-          <Progress
-            confirmedBlocks={txProgressData?.historyRecordByTxHash?.confirmedBlocks}
-            result={txProgressData?.historyRecordByTxHash?.result}
-            id={txProgressData?.historyRecordByTxHash?.id}
-            onFinished={updateBalances}
-          />
+      {txHash !== "0x" ? (
+        <div className="inline-flex items-center justify-center px-middle text-sm font-bold text-white lg:px-3">
+          View this on &nbsp;
+          <a
+            className="text-primary hover:underline"
+            target="_blank"
+            href={`${new URL(`tx/${txHash}`, sourceChain?.blockExplorers?.default.url).href}`}
+          >
+            Explorer
+          </a>
+          .
         </div>
       ) : null}
     </Modal>
@@ -202,51 +196,4 @@ function Item({ label, value }: { label: string; value?: string | null }) {
       <span className="truncate">{value}</span>
     </div>
   );
-}
-
-function Progress({
-  confirmedBlocks,
-  result,
-  id,
-  onFinished = () => undefined,
-}: {
-  confirmedBlocks: string | null | undefined;
-  result: RecordResult | null | undefined;
-  id: string | null | undefined;
-  onFinished?: () => void;
-}) {
-  const splited = confirmedBlocks?.split("/");
-  if (splited?.length === 2) {
-    const finished = Number(splited[0]);
-    const total = Number(splited[1]);
-
-    if (finished === total || result === RecordResult.SUCCESS) {
-      onFinished();
-      return (
-        <div className="flex w-full items-center justify-between">
-          <div className="inline-flex">
-            <span className="text-sm font-bold">LnProvider relay finished. Go to&nbsp;</span>
-            <Link href={`/records/${id}`} className="text-sm font-bold text-primary hover:underline">
-              Detail
-            </Link>
-          </div>
-          <Image width={20} height={20} alt="Finished" src="/images/finished.svg" />
-        </div>
-      );
-    } else {
-      return (
-        <div className="flex w-full items-center justify-between">
-          <span className="text-sm font-bold">{`Waiting for LnProvider relay message(${confirmedBlocks})`}</span>
-          <ProgressIcon percent={(finished * 100) / total} />
-        </div>
-      );
-    }
-  } else {
-    return (
-      <div className="flex w-full items-center justify-between">
-        <span className="text-sm font-bold">Waiting for indexing...</span>
-        <ProgressIcon percent={10} />
-      </div>
-    );
-  }
 }

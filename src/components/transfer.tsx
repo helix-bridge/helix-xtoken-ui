@@ -23,7 +23,6 @@ import BridgeSelect from "./bridge-select";
 import TransferInfo from "./transfer-info";
 import TransferAction from "./transfer-action";
 import TransferModal from "./modals/transfer-modal";
-import DisclaimerModal from "./modals/disclaimer-modal";
 
 const { defaultSourceChains } = getCrossDefaultValue();
 
@@ -358,8 +357,6 @@ export default function Transfer() {
           setTransferAmount({ input: "", valid: true, value: 0n });
         }}
       />
-
-      <DisclaimerModal />
     </>
   );
 }

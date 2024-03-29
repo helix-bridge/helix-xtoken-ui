@@ -1,20 +1,9 @@
 import { BaseBridge } from "@/bridges";
-import { GQL_HISTORY_RECORD_BY_TX_HASH } from "@/config";
 import { useApp, useTransfer } from "@/hooks";
-import {
-  ChainConfig,
-  HistoryRecordByTxHashReqParams,
-  HistoryRecordByTxHashResData,
-  InputValue,
-  RecordResult,
-  Token,
-} from "@/types";
-import ProgressIcon from "@/ui/progress-icon";
+import { ChainConfig, InputValue, Token } from "@/types";
 import { formatBalance, getChainLogoSrc, notifyError, toShortAdrress } from "@/utils";
-import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { Address, Hex, parseUnits } from "viem";
 

@@ -7,12 +7,11 @@ import {
   HistoryRecordByTxHashResData,
   InputValue,
   RecordResult,
-  SortedLnBridgeRelayInfosResData,
   Token,
 } from "@/types";
 import ProgressIcon from "@/ui/progress-icon";
 import { formatBalance, getChainLogoSrc, notifyError, toShortAdrress } from "@/utils";
-import { ApolloQueryResult, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,10 +26,9 @@ interface Props {
   transferAmount: InputValue<bigint>;
   isOpen: boolean;
   onClose: () => void;
-  refetchRelayers: () => Promise<ApolloQueryResult<SortedLnBridgeRelayInfosResData>>;
 }
 
-export default function TransferModal({ sender, recipient, transferAmount, isOpen, onClose, refetchRelayers }: Props) {
+export default function TransferModal({ sender, recipient, transferAmount, isOpen, onClose }: Props) {
   const { updateBalances } = useApp();
   const { bridgeInstance, sourceChain, targetChain, sourceToken, targetToken, bridgeFee, transfer } = useTransfer();
   const [txHash, setTxHash] = useState<Hex>("0x");
@@ -50,25 +48,14 @@ export default function TransferModal({ sender, recipient, transferAmount, isOpe
     if (sender && recipient && sourceChain && bridgeInstance) {
       setBusy(true);
       try {
-        const relayer = bridgeInstance.isLnBridge()
-          ? (await refetchRelayers()).data.sortedLnBridgeRelayInfos?.records.at(0)
-          : undefined;
         const receipt = await transfer(sender, recipient, transferAmount.value, bridgeInstance, sourceChain, {
-          relayer: relayer?.relayer,
-          transferId: relayer?.lastTransferId,
           totalFee: (
             await bridgeInstance.getFee({
               sender,
               recipient,
-              baseFee: BigInt(relayer?.baseFee || 0),
-              protocolFee: BigInt(relayer?.protocolFee || 0),
-              liquidityFeeRate: BigInt(relayer?.liquidityFeeRate || 0),
               transferAmount: transferAmount.value,
-              relayer: relayer?.relayer,
             })
           )?.value,
-          withdrawNonce: BigInt(relayer?.withdrawNonce || 0),
-          depositedMargin: BigInt(relayer?.margin || 0),
         });
 
         if (receipt?.status === "success") {
@@ -83,7 +70,7 @@ export default function TransferModal({ sender, recipient, transferAmount, isOpe
         setBusy(false);
       }
     }
-  }, [sender, recipient, sourceChain, transferAmount, bridgeInstance, transfer, refetchRelayers, updateBalances]);
+  }, [sender, recipient, sourceChain, transferAmount, bridgeInstance, transfer, updateBalances]);
 
   // Reset state
   useEffect(() => {

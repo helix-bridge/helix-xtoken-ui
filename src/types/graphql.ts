@@ -102,32 +102,6 @@ export interface HistoryRecordResData {
   historyRecordById: HistoryRecord | null;
 }
 
-export interface SortedLnBridgeRelayInfosReqParams {
-  amount: string;
-  decimals?: number;
-  bridge?: BridgeCategory;
-  token?: Address;
-  fromChain?: Network;
-  toChain?: Network;
-}
-
-export interface SortedLnBridgeRelayInfosResData {
-  sortedLnBridgeRelayInfos: {
-    transferLimit: string;
-    records: Pick<
-      LnBridgeRelayInfo,
-      | "relayer"
-      | "margin"
-      | "baseFee"
-      | "protocolFee"
-      | "liquidityFeeRate"
-      | "lastTransferId"
-      | "withdrawNonce"
-      | "bridge"
-    >[];
-  } | null;
-}
-
 export type LnBridgeRelayerOverview = Pick<
   LnBridgeRelayInfo,
   | "id"

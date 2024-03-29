@@ -83,39 +83,6 @@ export const GQL_HISTORY_RECORD_BY_ID = gql`
   }
 `;
 
-export const GQL_SORTED_LNBRIDGE_RELAY_INFOS = gql`
-  query sortedLnBridgeRelayInfos(
-    $amount: String
-    $decimals: Int
-    $bridge: String
-    $token: String
-    $fromChain: String
-    $toChain: String
-  ) {
-    sortedLnBridgeRelayInfos(
-      amount: $amount
-      decimals: $decimals
-      bridge: $bridge
-      token: $token
-      fromChain: $fromChain
-      toChain: $toChain
-    ) {
-      transferLimit
-      records {
-        sendToken
-        relayer
-        margin
-        baseFee
-        protocolFee
-        liquidityFeeRate
-        lastTransferId
-        withdrawNonce
-        bridge
-      }
-    }
-  }
-`;
-
 export const GQL_QUERY_LNBRIDGE_RELAY_INFOS = gql`
   query queryLnBridgeRelayInfos(
     $fromChain: String

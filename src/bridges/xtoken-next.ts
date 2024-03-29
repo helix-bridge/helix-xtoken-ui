@@ -202,28 +202,35 @@ export class XTokenNextBridge extends BaseBridge {
       const originalSender = this.convertor?.source ?? sender;
       const { recipient: pRecipient, extData } = await this._getExtDataAndRecipient(recipient);
 
-      const args = [
-        BigInt(this.sourceChain.id),
-        this.sourceToken.inner,
-        originalSender,
-        pRecipient,
-        sender,
-        amount,
-        nonce,
-        extData,
-      ] as const;
-
       if (this.crossInfo?.action === "issue") {
         message = encodeFunctionData({
           abi: (await import("@/abi/xtoken-issuing-next")).default,
           functionName: "issue",
-          args,
+          args: [
+            BigInt(this.sourceChain.id),
+            this.sourceToken.inner,
+            originalSender,
+            pRecipient,
+            sender,
+            amount,
+            nonce,
+            extData,
+          ],
         });
       } else if (this.crossInfo?.action === "redeem") {
         message = encodeFunctionData({
           abi: (await import("@/abi/xtoken-backing-next")).default,
           functionName: "unlock",
-          args,
+          args: [
+            BigInt(this.sourceChain.id),
+            this.targetToken.inner,
+            originalSender,
+            pRecipient,
+            sender,
+            amount,
+            nonce,
+            extData,
+          ],
         });
       }
 

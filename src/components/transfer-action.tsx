@@ -56,7 +56,7 @@ export default function TransferAction({ recipient, transferable, transferAmount
           transferable &&
           transferAmount.input &&
           transferAmount.valid &&
-          transferAmount.value < transferable &&
+          transferAmount.value <= transferable &&
           isAddress(recipient ?? "")
         )
       ) {

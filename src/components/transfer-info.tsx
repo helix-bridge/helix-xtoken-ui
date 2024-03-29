@@ -51,22 +51,20 @@ export default function TransferInfo({ fee, bridge, transferLimit: propTransferL
   return (
     <div className="flex flex-col gap-small rounded-xl bg-inner px-3 py-middle">
       <Item label="Estimated Arrival Time" value={bridge?.formatEstimateTime()} />
-      {bridge?.getCategory().startsWith("xtoken") ? null : (
-        <Item
-          label="Transaction Fee"
-          value={
-            fee?.loading ? (
-              <CountLoading color="white" />
-            ) : fee?.token && fee.value ? (
-              `${formatBalance(fee.value, fee.token.decimals, { precision: 6 })} ${fee.token.symbol}`
-            ) : (
-              <Tooltip content="Liquidity is not enough">
-                <Image width={16} height={16} alt="Fee" src="/images/warning.svg" />
-              </Tooltip>
-            )
-          }
-        />
-      )}
+      <Item
+        label="Message Fee"
+        value={
+          fee?.loading ? (
+            <CountLoading color="white" />
+          ) : fee?.token && fee.value ? (
+            `${formatBalance(fee.value, fee.token.decimals, { precision: 6 })} ${fee.token.symbol}`
+          ) : (
+            <Tooltip content="Unavailable">
+              <Image width={16} height={16} alt="Fee" src="/images/warning.svg" />
+            </Tooltip>
+          )
+        }
+      />
 
       {transferLimit ? (
         <Item

@@ -196,7 +196,7 @@ function Information({ fee, bridge }: { fee?: { value: bigint; token: Token }; b
   return (
     <div className="flex flex-col gap-small rounded-xl bg-inner p-middle lg:p-3">
       <Item
-        label="Transaction Fee"
+        label="Message Fee"
         value={
           fee
             ? `${formatBalance(fee.value, fee.token.decimals, { precision: 6, keepZero: false })} ${fee.token.symbol}`

@@ -293,6 +293,7 @@ export default function Transfer() {
             enabledDynamicStyle
             balance={sourceBalance?.value}
             min={bridgeInstance?.getCrossInfo()?.min}
+            max={transferable}
             value={transferAmount}
             token={sourceToken}
             balanceLoading={balanceLoading}

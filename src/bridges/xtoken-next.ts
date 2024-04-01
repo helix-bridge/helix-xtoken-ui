@@ -61,6 +61,24 @@ export class XTokenNextBridge extends BaseBridge {
         source: "0x4CdFe9915d2c72506f4fC2363A8EaE032E82d1aA",
         target: "0xB3A8DB63d6FBE0f50A3D4977c3e892543D772C4A",
       };
+    } else if (
+      this.sourceChain?.network === "darwinia-dvm" &&
+      this.targetChain?.network === "ethereum" &&
+      this.sourceToken?.type === "native"
+    ) {
+      this.convertor = {
+        source: "0x092e19c46c9daab7824393f1cd9c22f5bea13560",
+        target: "0xc29dCb1F12a1618262eF9FBA673b77140adc02D6",
+      };
+    } else if (
+      this.sourceChain?.network === "ethereum" &&
+      this.targetChain?.network === "darwinia-dvm" &&
+      this.targetToken?.type === "native"
+    ) {
+      this.convertor = {
+        source: "0xc29dCb1F12a1618262eF9FBA673b77140adc02D6",
+        target: "0x092e19c46c9daab7824393f1cd9c22f5bea13560",
+      };
     } else if (this.sourceChain?.network === "darwinia-dvm" && this.targetChain?.network === "crab-dvm") {
       const source = this.sourceToken?.type === "native" ? "0xA8d0E9a45249Ec839C397fa0F371f5F64eCAB7F7" : undefined;
       const target = this.targetToken?.type === "native" ? "0x004D0dE211BC148c3Ce696C51Cbc85BD421727E9" : undefined;
@@ -68,14 +86,6 @@ export class XTokenNextBridge extends BaseBridge {
     } else if (this.sourceChain?.network === "crab-dvm" && this.targetChain?.network === "darwinia-dvm") {
       const source = this.sourceToken?.type === "native" ? "0x004D0dE211BC148c3Ce696C51Cbc85BD421727E9" : undefined;
       const target = this.targetToken?.type === "native" ? "0xA8d0E9a45249Ec839C397fa0F371f5F64eCAB7F7" : undefined;
-      this.convertor = { source, target };
-    } else if (this.sourceChain?.network === "darwinia-dvm" && this.targetChain?.network === "ethereum") {
-      const source = this.sourceToken?.type === "native" ? "0x092e19c46c9daab7824393f1cd9c22f5bea13560" : undefined;
-      const target = this.targetToken?.type === "native" ? "0xc29dCb1F12a1618262eF9FBA673b77140adc02D6" : undefined;
-      this.convertor = { source, target };
-    } else if (this.sourceChain?.network === "ethereum" && this.targetChain?.network === "darwinia-dvm") {
-      const source = this.sourceToken?.type === "native" ? "0xc29dCb1F12a1618262eF9FBA673b77140adc02D6" : undefined;
-      const target = this.targetToken?.type === "native" ? "0x092e19c46c9daab7824393f1cd9c22f5bea13560" : undefined;
       this.convertor = { source, target };
     }
   }

@@ -1,8 +1,8 @@
-import Footer from "@/components/footer";
+// import Footer from "@/components/footer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
-import Header from "@/components/header";
+// import Header from "@/components/header";
 import RainbowProvider from "@/providers/rainbow-provider";
 import GraphqlProvider from "@/providers/graphql-provider";
 import AppProvider from "@/providers/app-provider";
@@ -26,9 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <RainbowProvider>
             <AppProvider>
               <TransferProvider>
-                <Header />
+                {/* <Header /> */}
                 {children}
-                <Footer />
+                {/* <Footer /> */}
               </TransferProvider>
             </AppProvider>
           </RainbowProvider>

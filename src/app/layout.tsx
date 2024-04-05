@@ -14,7 +14,7 @@ const ibm_plex_sans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Darwinia xToken",
+  title: "Darwinia xToken - Helix Bridge",
   description: "Darwinia xToken cross-chain powered by Helix Bridge.",
 };
 

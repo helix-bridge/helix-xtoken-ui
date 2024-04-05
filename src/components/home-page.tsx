@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
       <div className="container flex flex-col items-center justify-center gap-12 px-middle lg:flex-row lg:justify-between lg:gap-middle">
         <div className="flex flex-col">
           <Image alt="Logo" width={210} height={56} src="/images/logo.svg" className="shrink-0" />
@@ -38,6 +38,13 @@ export default function HomePage() {
           </Social>
         </div>
       </div>
+
+      <div
+        className="absolute -bottom-[90vw] left-0 h-[100vw] w-screen rounded-full opacity-40 blur-[6.15rem]"
+        style={{
+          background: "linear-gradient(#1859FF 100%, #0286FF 100%), linear-gradient(271deg, #1859FF 0%, #0286FF 100%)",
+        }}
+      />
     </main>
   );
 }

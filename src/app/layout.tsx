@@ -14,8 +14,8 @@ const ibm_plex_sans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Helix xToken - Helix Bridge",
-  description: "Helix Bridge for xToken cross-chain.",
+  title: "Darwinia xToken",
+  description: "Darwinia xToken cross-chain powered by Helix Bridge.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

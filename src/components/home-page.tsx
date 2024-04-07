@@ -68,7 +68,7 @@ function Card({ icon, link, label, external }: { icon: string; link: string; lab
               stroke-width="1.5"
               stroke="currentColor"
               aria-hidden="true"
-              className="h-0 w-0 text-primary transition-all group-hover:h-3 group-hover:w-3"
+              className="h-0 w-0 text-[#0085FF] transition-all group-hover:h-3 group-hover:w-3"
             >
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>

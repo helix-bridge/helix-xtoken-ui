@@ -52,7 +52,7 @@ export const ethereumChain: ChainConfig = {
         },
         {
           target: { network: "darwinia-dvm", symbol: "RING" },
-          bridge: { category: "xtoken-ethereum" },
+          bridge: { category: "xtoken-ethereum-darwinia" },
           action: "redeem",
         },
       ],
@@ -75,7 +75,7 @@ export const ethereumChain: ChainConfig = {
         },
         {
           target: { network: "darwinia-dvm", symbol: "KTON" },
-          bridge: { category: "xtoken-ethereum" },
+          bridge: { category: "xtoken-ethereum-darwinia" },
           action: "redeem",
         },
       ],

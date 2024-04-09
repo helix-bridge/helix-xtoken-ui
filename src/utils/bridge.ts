@@ -9,6 +9,9 @@ import {
 import { BridgeConstructorArgs } from "@/types";
 
 export function bridgeFactory(args: BridgeConstructorArgs): BaseBridge | undefined {
+  if (args.category.startsWith("xtoken-")) {
+    return new XTokenNextBridge(args);
+  }
   switch (args.category) {
     case "helix-sub2ethv2(lock)":
     case "helix-sub2ethv2(unlock)":
@@ -21,12 +24,6 @@ export function bridgeFactory(args: BridgeConstructorArgs): BaseBridge | undefin
       return new HelixLpBridge(args);
     case "l2arbitrumbridge-ethereum":
       return new L2ArbitrumBridge(args);
-    case "xtoken-darwinia-dvm":
-    case "xtoken-crab-dvm":
-    case "xtoken-pangolin-dvm":
-    case "xtoken-sepolia":
-    case "xtoken-ethereum":
-      return new XTokenNextBridge(args);
     default:
       return;
   }

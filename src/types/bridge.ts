@@ -14,11 +14,12 @@ export type HelixBridgeCategory =
   | "helix-sub2subv21(unlock)"
   | "helix-sub2subv21(lock)";
 export type XTokenBridgeCategory =
-  | "xtoken-sepolia"
-  | "xtoken-ethereum"
-  | "xtoken-darwinia-dvm"
-  | "xtoken-crab-dvm"
-  | "xtoken-pangolin-dvm";
+  | "xtoken-crab-darwinia"
+  | "xtoken-darwinia-crab"
+  | "xtoken-darwinia-ethereum"
+  | "xtoken-ethereum-darwinia"
+  | "xtoken-pangolin-sepolia"
+  | "xtoken-sepolia-pangolin";
 export type BridgeCategory = L2BridgeCategory | HelixLpBridgeCategory | HelixBridgeCategory | XTokenBridgeCategory;
 
 export interface BridgeContract {

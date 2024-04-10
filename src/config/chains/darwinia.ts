@@ -114,7 +114,7 @@ export const darwiniaChain: ChainConfig = {
       cross: [
         {
           target: { network: "crab-dvm", symbol: "CRAB" },
-          bridge: { category: "xtoken-darwinia-crab" },
+          bridge: { category: "xtoken-crab-darwinia" },
           action: "redeem",
         },
       ],

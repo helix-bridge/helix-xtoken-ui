@@ -69,7 +69,7 @@ export const crabChain: ChainConfig = {
       cross: [
         {
           target: { network: "darwinia-dvm", symbol: "RING" },
-          bridge: { category: "xtoken-crab-darwinia" },
+          bridge: { category: "xtoken-darwinia-crab" },
           action: "redeem",
         },
       ],

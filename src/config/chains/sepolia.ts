@@ -47,7 +47,7 @@ export const sepoliaChain: ChainConfig = {
       cross: [
         {
           target: { network: "pangolin-dvm", symbol: "PRING" },
-          bridge: { category: "xtoken-sepolia" },
+          bridge: { category: "xtoken-pangolin-sepolia" },
           action: "redeem",
         },
       ],

@@ -53,7 +53,7 @@ export const darwiniaChain: ChainConfig = {
       cross: [
         {
           target: { network: "crab-dvm", symbol: "xWRING" },
-          bridge: { category: "xtoken-darwinia-dvm" },
+          bridge: { category: "xtoken-darwinia-crab" },
           action: "issue",
         },
         {
@@ -74,7 +74,7 @@ export const darwiniaChain: ChainConfig = {
         },
         {
           target: { network: "ethereum", symbol: "RING" },
-          bridge: { category: "xtoken-darwinia-dvm" },
+          bridge: { category: "xtoken-darwinia-ethereum" },
           action: "issue",
         },
       ],
@@ -97,7 +97,7 @@ export const darwiniaChain: ChainConfig = {
         },
         {
           target: { network: "ethereum", symbol: "KTON" },
-          bridge: { category: "xtoken-darwinia-dvm" },
+          bridge: { category: "xtoken-darwinia-ethereum" },
           action: "issue",
         },
       ],
@@ -114,7 +114,7 @@ export const darwiniaChain: ChainConfig = {
       cross: [
         {
           target: { network: "crab-dvm", symbol: "CRAB" },
-          bridge: { category: "xtoken-darwinia-dvm" },
+          bridge: { category: "xtoken-crab-darwinia" },
           action: "redeem",
         },
       ],

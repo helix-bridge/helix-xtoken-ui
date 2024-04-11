@@ -17,7 +17,6 @@ import Button from "@/ui/button";
 import { useAllowance, useBalance, useDailyLimit, useMessageFee, useTransferV2 } from "@/hooks";
 import { useAccount, useNetwork, usePublicClient, useSwitchNetwork, useWalletClient } from "wagmi";
 import TransferProviderV2 from "@/providers/transfer-provider-v2";
-import DisclaimerModal from "./modals/disclaimer-modal";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { Address, Hex } from "viem";
 import TransferModalV2 from "./modals/transfer-modal-v2";
@@ -330,8 +329,6 @@ function Component() {
         }}
         onConfirm={handleTransfer}
       />
-
-      <DisclaimerModal />
     </>
   );
 }

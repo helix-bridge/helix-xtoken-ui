@@ -101,13 +101,13 @@ export default function TransferModal({ sender, recipient, transferAmount, isOpe
       </div>
 
       {/* information */}
-      <div className="flex flex-col gap-middle">
+      <div className="flex flex-col gap-medium">
         <span className="text-sm font-extrabold text-white">Information</span>
         <Information fee={bridgeFee} bridge={bridgeInstance} />
       </div>
 
       {txHash !== "0x" ? (
-        <div className="inline-flex items-center justify-center px-middle text-sm font-bold text-white lg:px-3">
+        <div className="inline-flex items-center justify-center px-medium text-sm font-bold text-white lg:px-3">
           View this on &nbsp;
           <a
             className="text-primary hover:underline"
@@ -137,9 +137,9 @@ function SourceTarget({
   address?: Address | null;
 }) {
   return chain && token ? (
-    <div className="flex items-center justify-between rounded-xl bg-inner p-middle lg:p-3">
+    <div className="flex items-center justify-between rounded-xl bg-inner p-medium lg:p-3">
       {/* Left */}
-      <div className="flex items-center gap-middle">
+      <div className="flex items-center gap-medium">
         <Image width={36} height={36} alt="Chain" src={getChainLogoSrc(chain.logo)} className="shrink-0 rounded-full" />
         <div className="flex flex-col items-start gap-small">
           <span className="text-base font-bold text-white">{chain.name}</span>
@@ -164,7 +164,7 @@ function SourceTarget({
 
 function Information({ fee, bridge }: { fee?: { value: bigint; token: Token }; bridge?: BaseBridge | null }) {
   return (
-    <div className="flex flex-col gap-small rounded-xl bg-inner p-middle lg:p-3">
+    <div className="flex flex-col gap-small rounded-xl bg-inner p-medium lg:p-3">
       <Item
         label="Message Fee"
         value={
@@ -180,7 +180,7 @@ function Information({ fee, bridge }: { fee?: { value: bigint; token: Token }; b
 
 function Item({ label, value }: { label: string; value?: string | null }) {
   return (
-    <div className="flex items-center justify-between gap-middle text-sm font-bold text-white">
+    <div className="flex items-center justify-between gap-medium text-sm font-bold text-white">
       <span>{label}</span>
       <span className="truncate">{value}</span>
     </div>

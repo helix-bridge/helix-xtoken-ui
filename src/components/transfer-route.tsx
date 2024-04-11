@@ -2,9 +2,7 @@ import Tooltip from "@/ui/tooltip";
 import { getChainConfig } from "@/utils/chain";
 import { getChainLogoSrc } from "@/utils/misc";
 import Image from "next/image";
-import BridgeLogo from "./bridge-identicon";
 import { HistoryRecord } from "@/types/graphql";
-import { bridgeFactory } from "@/utils/bridge";
 
 interface Props {
   record?: HistoryRecord | null;
@@ -13,14 +11,15 @@ interface Props {
 export default function TransferRoute({ record }: Props) {
   const sourceChain = getChainConfig(record?.fromChain);
   const targetChain = getChainConfig(record?.toChain);
-  const bridge = record ? bridgeFactory({ category: record.bridge }) : undefined;
 
   return (
     <div className="flex items-center gap-large">
       <ChainIcon logo={getChainLogoSrc(sourceChain?.logo)} name={sourceChain?.name || "Unknown"} />
-      <CaretRight />
-      <BridgeLogo width={132} height={32} type="horizontal" bridge={bridge} />
-      <CaretRight />
+      <div className="flex items-center">
+        <CaretRight />
+        <CaretRight />
+        <CaretRight />
+      </div>
       <ChainIcon logo={getChainLogoSrc(targetChain?.logo)} name={targetChain?.name || "Unknown"} />
     </div>
   );

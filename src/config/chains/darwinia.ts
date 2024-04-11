@@ -78,6 +78,7 @@ export const darwiniaChain: ChainConfig = {
           action: "issue",
         },
       ],
+      category: "ring",
     },
     {
       decimals: 18,
@@ -101,6 +102,7 @@ export const darwiniaChain: ChainConfig = {
           action: "issue",
         },
       ],
+      category: "kton",
     },
     {
       decimals: 18,
@@ -118,6 +120,7 @@ export const darwiniaChain: ChainConfig = {
           action: "redeem",
         },
       ],
+      category: "crab",
     },
   ],
   messager: { msgline: "0x65Be094765731F394bc6d9DF53bDF3376F1Fc8B0" },

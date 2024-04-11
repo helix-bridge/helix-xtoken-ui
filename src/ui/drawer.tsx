@@ -43,11 +43,11 @@ export default function Drawer({
         className="fixed left-0 top-0 z-20 h-screen w-screen bg-app-bg/80"
       >
         <div
-          className="absolute right-0 top-0 h-screen w-3/4 overflow-y-auto bg-component"
+          className="absolute right-0 top-0 h-screen w-3/4 overflow-y-auto bg-secondary"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex h-full w-full flex-col items-start">
-            <div className="flex w-full items-center justify-between p-middle">
+            <div className="flex w-full items-center justify-between p-medium">
               <Link href="/" onClick={onClose}>
                 <Image width={152} height={18} alt="Logo" src="/images/projects/darwinia.png" />
               </Link>

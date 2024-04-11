@@ -31,25 +31,26 @@ body {
   .app-header {
     @apply h-[64px];
   }
-  .app-footer {
+  /* .app-footer {
     @apply h-[58px];
-  }
+  } */
   .app-main {
-    min-height: calc(100vh - 64px - 58px);
+    /* min-height: calc(100vh - 64px - 58px); */
+    min-height: calc(100vh - 64px);
     @apply mt-[64px];
   }
 
   /* Page */
   .page-container {
-    @apply max-w-8xl w-full mx-auto px-middle py-5;
+    @apply max-w-8xl w-full mx-auto px-medium py-5;
   }
 
   /* User */
   .user-connect-wallet {
-    @apply flex h-8 shrink-0 items-center gap-middle rounded-xl bg-primary px-large transition lg:hover:bg-primary/80 lg:active:translate-y-1;
+    @apply flex h-8 shrink-0 items-center gap-medium rounded-xl bg-primary px-large transition lg:hover:bg-primary/80 lg:active:translate-y-1;
   }
   .user-dropdown-item {
-    @apply inline-flex items-center gap-middle rounded-xl px-middle py-small text-start transition hover:bg-white/10 lg:active:translate-y-1;
+    @apply inline-flex items-center gap-medium rounded-xl px-medium py-small text-start transition hover:bg-white/10 lg:active:translate-y-1;
   }
 
   .button {

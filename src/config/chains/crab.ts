@@ -56,6 +56,7 @@ export const crabChain: ChainConfig = {
           action: "issue",
         },
       ],
+      category: "crab",
     },
     {
       decimals: 18,
@@ -73,6 +74,7 @@ export const crabChain: ChainConfig = {
           action: "redeem",
         },
       ],
+      category: "ring",
     },
   ],
   messager: {

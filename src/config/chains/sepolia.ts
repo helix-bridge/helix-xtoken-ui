@@ -34,6 +34,7 @@ export const sepoliaChain: ChainConfig = {
       inner: "0x0000000000000000000000000000000000000000",
       logo: "eth.png",
       cross: [],
+      category: "eth",
     },
     {
       decimals: 18,
@@ -51,6 +52,7 @@ export const sepoliaChain: ChainConfig = {
           action: "redeem",
         },
       ],
+      category: "ring",
     },
   ],
   messager: {

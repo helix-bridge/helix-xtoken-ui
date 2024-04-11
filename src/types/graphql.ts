@@ -1,4 +1,4 @@
-import { TokenSymbol } from "./token";
+import { TokenCategory, TokenSymbol } from "./token";
 import { BridgeCategory } from "./bridge";
 import { Network } from "./chain";
 import { Address, Hex } from "viem";
@@ -47,6 +47,11 @@ export interface HistoryRecord {
   extData: Hex;
 }
 
+export interface SupportChains {
+  fromChain: Network;
+  toChains: Network[];
+}
+
 /**
  * Custom
  */
@@ -72,12 +77,4 @@ export interface HistoryRecordReqParams {
 
 export interface HistoryRecordResData {
   historyRecordById: HistoryRecord | null;
-}
-
-export interface HistoryRecordByTxHashReqParams {
-  txHash: Hex;
-}
-
-export interface HistoryRecordByTxHashResData {
-  historyRecordByTxHash: Pick<HistoryRecord, "confirmedBlocks" | "result" | "id"> | null;
 }

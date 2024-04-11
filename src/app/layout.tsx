@@ -2,7 +2,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
-// import Header from "@/components/header";
+import Header from "@/components/header";
 import RainbowProvider from "@/providers/rainbow-provider";
 import GraphqlProvider from "@/providers/graphql-provider";
 import AppProvider from "@/providers/app-provider";
@@ -14,8 +14,8 @@ const ibm_plex_sans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Helix xToken - Helix Bridge",
-  description: "Helix Bridge for xToken cross-chain.",
+  title: "Darwinia Bridge",
+  description: "Darwinia bridge, assets cross-chain",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <RainbowProvider>
             <AppProvider>
               <TransferProvider>
-                {/* <Header /> */}
+                <Header />
                 {children}
                 {/* <Footer /> */}
               </TransferProvider>

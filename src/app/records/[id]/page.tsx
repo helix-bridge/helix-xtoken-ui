@@ -1,5 +1,3 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
 import RecordDetail from "@/components/record-detail";
 import PageWrap from "@/ui/page-wrap";
 
@@ -9,14 +7,10 @@ interface Props {
   };
 }
 
-export default function RecordPage({ params }: Props) {
+export default function Record({ params }: Props) {
   return (
-    <>
-      <Header />
-      <PageWrap>
-        <RecordDetail id={params.id} />
-      </PageWrap>
-      <Footer />
-    </>
+    <PageWrap>
+      <RecordDetail id={params.id} />
+    </PageWrap>
   );
 }

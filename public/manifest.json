@@ -1,0 +1,5 @@
+{
+  "name": "Darwinia Bridge",
+  "description": "Darwinia bridge, assets cross-chain",
+  "icons": [{ "src": "icon.svg", "sizes": "any" }]
+}

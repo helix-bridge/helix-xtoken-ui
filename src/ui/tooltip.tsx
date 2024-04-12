@@ -23,6 +23,7 @@ interface Props {
   enabled?: boolean;
   className?: string;
   contentClassName?: string;
+  status?: "default" | "warning";
 }
 
 export default function Tooltip({
@@ -32,6 +33,7 @@ export default function Tooltip({
   className,
   contentClassName,
   enabled = true,
+  status = "default",
 }: PropsWithChildren<Props>) {
   const [isOpen, setIsOpen] = useState(false);
   const arrowRef = useRef(null);
@@ -64,12 +66,19 @@ export default function Tooltip({
       {isMounted && (
         <FloatingPortal>
           <div ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()} className="z-30">
-            <FloatingArrow ref={arrowRef} style={styles} context={context} fill="#FF0083" />
+            <FloatingArrow
+              ref={arrowRef}
+              style={styles}
+              context={context}
+              fill={status === "warning" ? "#FAAD14" : "#FF0083"}
+            />
             <div
               style={styles}
-              className={`flex items-center rounded-middle bg-primary px-middle py-small ${contentClassName}`}
+              className={`flex items-center rounded-xl px-medium py-small ${
+                status === "warning" ? "bg-app-orange" : "bg-primary"
+              } ${contentClassName}`}
             >
-              {typeof content === "string" ? <span className="text-xs font-extrabold">{content}</span> : content}
+              {typeof content === "string" ? <span className="text-sm font-semibold">{content}</span> : content}
             </div>
           </div>
         </FloatingPortal>

@@ -25,6 +25,7 @@ export const ethereumChain: ChainConfig = {
       inner: "0x0000000000000000000000000000000000000000",
       logo: "eth.png",
       cross: [],
+      category: "eth",
     },
     {
       decimals: 18,
@@ -56,6 +57,7 @@ export const ethereumChain: ChainConfig = {
           action: "redeem",
         },
       ],
+      category: "ring",
     },
     {
       decimals: 18,
@@ -79,6 +81,7 @@ export const ethereumChain: ChainConfig = {
           action: "redeem",
         },
       ],
+      category: "kton",
     },
   ],
   messager: { msgline: "0x65Be094765731F394bc6d9DF53bDF3376F1Fc8B0" },

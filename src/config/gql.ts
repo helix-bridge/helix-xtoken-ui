@@ -82,13 +82,3 @@ export const GQL_HISTORY_RECORD_BY_ID = gql`
     }
   }
 `;
-
-export const GQL_HISTORY_RECORD_BY_TX_HASH = gql`
-  query historyRecordByTxHash($txHash: String) {
-    historyRecordByTxHash(txHash: $txHash) {
-      confirmedBlocks
-      result
-      id
-    }
-  }
-`;

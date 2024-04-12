@@ -35,7 +35,7 @@ export default function TransferInfo({ fee, bridge }: Props) {
   }, [bridge]);
 
   return (
-    <div className="flex flex-col gap-small rounded-xl bg-inner px-3 py-middle">
+    <div className="flex flex-col gap-small rounded-xl bg-inner px-3 py-medium">
       <Item label="Estimated Arrival Time" value={bridge?.formatEstimateTime()} />
       <Item
         label="Message Fee"

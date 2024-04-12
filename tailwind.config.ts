@@ -16,6 +16,8 @@ const config: Config = {
       },
       colors: {
         primary: "#FF0083",
+        secondary: "#1F282C",
+        background: "#00141D",
         component: "#303A44",
         inner: "#242D30",
         "app-bg": "#00141D",
@@ -25,21 +27,20 @@ const config: Config = {
       },
       borderRadius: {
         small: "0.25rem", // 4px
-        middle: "0.5rem", // 8px
+        medium: "0.5rem", // 8px
         large: "1rem", // 16px
         extralarge: "1.5rem", // 24px
       },
       spacing: {
         small: "0.3125rem", // 5px
-        middle: "0.625rem", // 10px
+        medium: "0.625rem", // 10px
         large: "0.9375rem", // 15px
       },
       maxWidth: {
         "8xl": "90rem",
       },
       screens: {
-        xl: "1200px",
-        "2xl": "1200px",
+        "2xl": "1280px",
       },
       keyframes: {
         "right-enter": {
@@ -94,4 +95,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

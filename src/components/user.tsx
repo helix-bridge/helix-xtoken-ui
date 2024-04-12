@@ -42,12 +42,17 @@ export default function User({ placement, prefixLength = 10, suffixLength = 8, o
 
   return address ? (
     <Dropdown
-      childClassName="bg-inner py-large rounded-large border border-component flex flex-col gap-large"
-      labelClassName="user-connect-wallet"
+      childClassName="bg-background py-large rounded-large border border-white/20 flex flex-col gap-large"
+      labelClassName="h-9 lg:h-8 px-large items-center justify-center flex bg-white/20 rounded-xl gap-2"
       placement={placement}
-      label={<LabelSpan>{toShortAdrress(address)}</LabelSpan>}
+      label={
+        <div className="flex items-center gap-small">
+          <AddressIdenticon address={address} diameter={20} />
+          <LabelSpan>{toShortAdrress(address)}</LabelSpan>
+        </div>
+      }
     >
-      <div className="flex items-center gap-middle px-5">
+      <div className="flex items-center gap-medium px-5">
         <AddressIdenticon address={address} diameter={32} />
         <PrettyAddress
           forceShort
@@ -85,7 +90,7 @@ export default function User({ placement, prefixLength = 10, suffixLength = 8, o
           .map((balance) => (
             <button
               key={`${balance.chain.network}-${balance.token.symbol}`}
-              className="flex items-center gap-large rounded-2xl px-3 py-2 transition-colors hover:bg-white/10 disabled:cursor-default lg:py-middle"
+              className="flex items-center gap-large rounded-2xl px-3 py-2 transition-colors hover:bg-white/10 disabled:cursor-default lg:py-medium"
               disabled={pathname !== "/"}
               onClick={() => {
                 const _sourceChain = balance.chain;

@@ -220,6 +220,22 @@ function Component() {
     refreshAllowance,
   ]);
 
+  const alert = useMemo(() => {
+    if (
+      (sourceChain?.network === "darwinia-dvm" && targetChain?.network === "crab-dvm") ||
+      (sourceChain?.network === "crab-dvm" && targetChain?.network === "darwinia-dvm")
+    ) {
+      return (
+        <div className="inline-flex flex-wrap items-center justify-center rounded-2xl bg-background p-2 lg:p-3">
+          <span className="text-center text-sm font-bold text-orange-400">
+            The bridge between Darwinia and Crab is undergoing maintenance and will reopen once upgrades are completed.
+          </span>
+        </div>
+      );
+    }
+    return null;
+  }, [sourceChain.network, targetChain.network]);
+
   return (
     <>
       <div className="mx-auto flex w-full flex-col gap-medium rounded-large bg-[#1F282C] p-medium lg:mt-5 lg:w-[27.5rem] lg:gap-5 lg:rounded-[1.25rem] lg:p-5">
@@ -261,20 +277,22 @@ function Component() {
                     onChange={setAmount}
                     onRefresh={refreshBalance}
                   />
-                  <TransferInformationSection
-                    bridge={bridge}
-                    fee={fee}
-                    dailyLimit={dailyLimit}
-                    isLoadingFee={loadingFee}
-                    isLoadingDailyLimit={loadingDailyLimit}
-                  />
+                  {alert ?? (
+                    <TransferInformationSection
+                      bridge={bridge}
+                      fee={fee}
+                      dailyLimit={dailyLimit}
+                      isLoadingFee={loadingFee}
+                      isLoadingDailyLimit={loadingDailyLimit}
+                    />
+                  )}
 
                   <div className="flex flex-col items-center gap-2 lg:gap-3">
                     <Button
                       className="inline-flex h-12 w-full items-center justify-center rounded-full"
                       kind="primary"
                       busy={isApproving}
-                      disabled={disableAction}
+                      disabled={disableAction || !!alert}
                       onClick={handleAction}
                     >
                       <span className="text-base font-bold text-white">{actionText}</span>

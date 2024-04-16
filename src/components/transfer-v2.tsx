@@ -221,20 +221,20 @@ function Component() {
   ]);
 
   const alert = useMemo(() => {
-    if (
-      (sourceChain?.network === "darwinia-dvm" && targetChain?.network === "crab-dvm") ||
-      (sourceChain?.network === "crab-dvm" && targetChain?.network === "darwinia-dvm")
-    ) {
-      return (
-        <div className="inline-flex flex-wrap items-center justify-center rounded-2xl bg-background p-2 lg:p-3">
-          <span className="text-center text-sm font-bold text-orange-400">
-            The bridge between Darwinia and Crab is undergoing maintenance and will reopen once upgrades are completed.
-          </span>
-        </div>
-      );
-    }
+    // if (
+    //   (sourceChain?.network === "darwinia-dvm" && targetChain?.network === "crab-dvm") ||
+    //   (sourceChain?.network === "crab-dvm" && targetChain?.network === "darwinia-dvm")
+    // ) {
+    //   return (
+    //     <div className="inline-flex flex-wrap items-center justify-center rounded-2xl bg-background p-2 lg:p-3">
+    //       <span className="text-center text-sm font-bold text-orange-400">
+    //         The bridge between Darwinia and Crab is undergoing maintenance and will reopen once upgrades are completed.
+    //       </span>
+    //     </div>
+    //   );
+    // }
     return null;
-  }, [sourceChain.network, targetChain.network]);
+  }, []);
 
   return (
     <>

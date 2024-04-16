@@ -171,6 +171,7 @@ export default function TransferProviderV2({ children }: PropsWithChildren<unkno
     (_token: typeof token) => {
       setToken(_token);
       changeUrl(true);
+      location.reload();
     },
     [changeUrl, setToken],
   );
